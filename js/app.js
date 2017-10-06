@@ -1,5 +1,29 @@
 document.addEventListener('DOMContentLoaded', ()=> {
   console.log('up and running');
+const b = 'b';
+const g = 'g';
+  const map = [
+    [b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b],
+    [b,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,b],
+    [b,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,b],
+    [b,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,b],
+    [b,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,b],
+    [b,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,b],
+    [b,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,b],
+    [b,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,b],
+    [b,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,b],
+    [b,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,b],
+    [b,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,b],
+    [b,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,b],
+    [b,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,b],
+    [b,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,b],
+    [b,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,b],
+    [b,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,b],
+    [b,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,b],
+    [b,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,b],
+    [b,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,b],
+    [b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b]
+  ];
 
 
 
@@ -43,56 +67,32 @@ document.addEventListener('DOMContentLoaded', ()=> {
 
   });
 
-  function gameboard(size){
+  function gameboard(width,height){
 
-    for (let i = 0; i < size; i++) {
+    for(let i = 0; i < map.length; i++) {
+      var cube = map[i];
+      for(var j = 0; j < cube.length; j++) {
 
+        const box = document.createElement('div');
+        box.style.width = '32px';
+        box.style.height = '32px';
 
-      const box = document.createElement('div');
-      box.style.width = '32px';
-      box.style.height = '32px';
+        box.style.backgroundImage = 'url(images/tilea4.png)';
+        switch (map[i][j]){
+          case 'b': box.style.backgroundPosition = '-96px -64px'; //brick
+            break;
+          case 'g': box.style.backgroundPosition - '-416px -32px'; //stone
+            break;
+        }
+        box.style.float ='left';
+        box.setAttribute('id','box' + i + j);
+        main.appendChild(box);
 
-      box.style.backgroundImage = 'url(images/tilea4.png)';
-      const tileId = 'g';
-      switch (tileId){
-        case 'b': box.style.backgroundPosition = '-96px -64px'; //brick
-          break;
-        case 'g': box.style.backgroundPosition - '-416px -32px'; //brick
-          break;
       }
-      box.style.float ='left';
-      box.setAttribute('id','box' + [i]);
-      main.appendChild(box);
 
     }
-
   }
-  gameboard(20*20);
+gameboard(20,20);
+
 
 });
-
-
-
-//
-// const map = [
-//   [b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b],
-//   [b,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,b],
-//   [b,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,b],
-//   [b,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,b],
-//   [b,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,b],
-//   [b,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,b],
-//   [b,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,b],
-//   [b,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,b],
-//   [b,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,b],
-//   [b,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,b],
-//   [b,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,b],
-//   [b,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,b],
-//   [b,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,b],
-//   [b,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,b],
-//   [b,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,b],
-//   [b,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,b],
-//   [b,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,b],
-//   [b,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,b],
-//   [b,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,b],
-//   [b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b]
-// ];
