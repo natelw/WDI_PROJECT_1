@@ -1,5 +1,4 @@
 console.log('up and running');
-let x = 0;
 // keypress handler
 let pressedLeft = 'false';
 let pressedRight = 'false';
@@ -20,11 +19,6 @@ document.addEventListener('keydown',(e) =>{
     case 32: pressedSpace = true;
       break;
   }
-  pressedDown === true ? console.log('working'):x=0 ;
-  pressedUp === true ? console.log('working'): x= 0;
-  pressedLeft === true ? console.log('working'):x = 0 ;
-  pressedRight === true ? console.log('working'): x = 0;
-  pressedSpace === true ? console.log('working'): x= 0;
 }, false);
 
 document.addEventListener('keyup',(e) => {
