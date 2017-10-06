@@ -2,7 +2,37 @@ body {
 
   background: white;
 }
-#container {
+.container {
   width: 640px;
   height: 640px;
+  margin: 5px;
+  float:left;
+}
+.control {
+width:390px;
+height: 630px;
+border: 5px dashed #b83413;
+position: fixed;
+left: 660px;
+background-color: #eeeade;
+}
+
+.titlelogo {
+position: relative;
+top: 10px;
+left: 10px;
+
+width:370px;
+height: 160px;
+background-color: white;
+}
+/* #f0731e
+*/
+.title {
+  font-family: monospace;
+  position: relative;
+  left: 10px;
+  color: white;
+  font-weight: bold;
+
 }

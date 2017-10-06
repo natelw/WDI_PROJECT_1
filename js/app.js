@@ -1,8 +1,8 @@
 document.addEventListener('DOMContentLoaded', ()=> {
   console.log('up and running');
-const b = 'b';
-const g = 'g';
-  const map = [
+  const b = 'b';
+  const g = 'g';
+  const map = [ // level map
     [b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b],
     [b,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,b],
     [b,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,b],
@@ -66,12 +66,12 @@ const g = 'g';
     }
 
   });
-
-  function gameboard(width,height){
+  // board creator function
+  function gameboard(){
 
     for(let i = 0; i < map.length; i++) {
-      var cube = map[i];
-      for(var j = 0; j < cube.length; j++) {
+      const cube = map[i];
+      for(let j = 0; j < cube.length; j++) {
 
         const box = document.createElement('div');
         box.style.width = '32px';
@@ -92,7 +92,7 @@ const g = 'g';
 
     }
   }
-gameboard(20,20);
+  gameboard();
 
 
 });
