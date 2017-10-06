@@ -51,8 +51,15 @@ document.addEventListener('DOMContentLoaded', ()=> {
       const box = document.createElement('div');
       box.style.width = '32px';
       box.style.height = '32px';
+
       box.style.backgroundImage = 'url(images/tilea4.png)';
-      box.style.backgroundPosition = '-96px -64px';
+      const tileId = 'g';
+      switch (tileId){
+        case 'b': box.style.backgroundPosition = '-96px -64px'; //brick
+          break;
+        case 'g': box.style.backgroundPosition - '-416px -32px'; //brick
+          break;
+      }
       box.style.float ='left';
       box.setAttribute('id','box' + [i]);
       main.appendChild(box);
