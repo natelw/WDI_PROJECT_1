@@ -1,4 +1,8 @@
 body {
 
-  background: blue;
+  background: white;
+}
+#container {
+  width: 640px;
+  height: 640px;
 }
