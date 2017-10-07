@@ -19,12 +19,33 @@ document.addEventListener('DOMContentLoaded', ()=> {
     [b,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,b],
     [b,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,b],
     [b,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,b],
+    [b,g,g,g,g,g,g,g,g,g,'@',g,g,g,g,g,g,g,g,b],
+    [b,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,b],
+    [b,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,b],
+    [b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b]
+  ];
+  const spriteMap = [ // player on layer map
+    [b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b],
+    [b,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,b],
+    [b,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,b],
+    [b,g,b,b,b,b,b,g,g,g,g,g,g,g,g,g,g,g,g,b],
+    [b,g,b,g,g,g,b,g,g,g,g,g,g,g,g,g,g,g,g,b],
+    [b,g,b,g,g,g,b,g,g,g,g,g,g,g,g,g,g,g,g,b],
+    [b,g,b,b,g,b,b,g,g,g,g,g,g,g,g,g,g,g,g,b],
+    [b,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,b],
+    [b,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,b],
+    [b,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,b],
+    [b,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,b],
+    [b,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,b],
+    [b,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,b],
+    [b,g,g,g,g,g,g,g,g,'@',g,g,g,g,g,g,g,g,g,b],
+    [b,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,b],
+    [b,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,b],
     [b,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,b],
     [b,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,b],
     [b,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,b],
     [b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b]
   ];
-
 
 
   // keypress handler
@@ -83,6 +104,13 @@ document.addEventListener('DOMContentLoaded', ()=> {
             break;
           case 'b': box.style.backgroundPosition - '-32px -32px'; //stone
             break;
+          case '@':
+        box.style.width = '16px';
+        box.style.margin = '0px 8px';
+        box.style.backgroundImage = 'url(images/humanss.gif)';
+        box.style.backgroundPosition = '-19px -19px'; //face front basic
+            break;
+
         }
         box.style.float ='left';
         box.setAttribute('id','box' + i + j);
@@ -92,12 +120,48 @@ document.addEventListener('DOMContentLoaded', ()=> {
 
     }
   }
-function animation(){
-  
-}
+  // function spriteboard(){
+  //
+  //   for(let i = 0; i < spriteMap.length; i++) {
+  //     const cube = spriteMap[i];
+  //     for(let j = 0; j < cube.length; j++) {
+  //
+  //       const playBox = document.createElement('div');
+  //       playBox.style.width = '32px';
+  //       playBox.style.height = '32px';
+  //       playBox.style.zIndex = '1';
+  //
+  //       playBox.style.backgroundImage = 'url(images/humanss.gif)';
+  //       switch (spriteMap[i][j]){
+  //         case '@':
+  //           playBox.style.width = '16px';
+  //           playBox.style.margin = '0px 8px';
+  //           playBox.style.backgroundPosition = '-19px -19px'; //face front basic
+  //           break;
+  //
+  //       }
+  //       playBox.style.float ='left';
+  //       playBox.setAttribute('id','SpriteBox' + i + j);
+  //       main.appendChild(spriteMap);
+  //
+  //     }
+  //
+  //   }
+  // }
+
+
+
+
+
+
+
+
+
+
 
 
   gameboard();
+
 
 
 });
