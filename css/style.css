@@ -15,18 +15,19 @@ height: 630px;
 border: 5px solid #7f727b;
 position: fixed;
 left: 660px;
-background:linear-gradient(#7f727b, #7f727b);
-background-color:#ccc;
+background:linear-gradient(#544657, #544657);
+background-color:;
 border-radius: 10px;
 }
 
 .titlelogo {
 position: relative;
 top: 30px;
+margin: 20px 0px;
 left: 25px;
 width:330px;
-height: 300px;
-background-color: #544657;
+height: 65px;
+background-color: #7f727b;
 border-radius: 20px;
   -moz-box-shadow:     inset 0px 0px 10px #7f727b;
   -webkit-box-shadow:  inset 0px 0px 10px #544657;

@@ -1,7 +1,26 @@
 document.addEventListener('DOMContentLoaded', ()=> {
   console.log('up and running');
+
+  function squareGen(squareType){
+    const squareObj =   new Object();
+    squareObj.squareType = squareType;
+    switch (squareType){
+      case 'b': squareObj.impass = true;
+
+        break; // stonewall
+      case 'g': squareObj.impass = false;
+        break; // dirt
+      case 'x': squareObj.impass = true;
+        squareObj.lastSquare = 'g';
+        break; // player
+    }
+    return squareObj;
+  }
+  console.log(squareGen('b'));
+
   const b = 'b';
   const g = 'g';
+  const x = '@';
   const map = [ // level map
     [b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b],
     [b,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,b],
@@ -19,7 +38,7 @@ document.addEventListener('DOMContentLoaded', ()=> {
     [b,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,b],
     [b,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,b],
     [b,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,b],
-    [b,g,g,g,g,g,g,g,g,g,'@',g,g,g,g,g,g,g,g,b],
+    [b,g,g,g,g,g,g,g,g,g,x,g,g,g,g,g,g,g,g,b],
     [b,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,b],
     [b,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,b],
     [b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b]
@@ -98,40 +117,36 @@ document.addEventListener('DOMContentLoaded', ()=> {
 
     }
   }
-  // function spriteboard(){
-  //
-  //   for(let i = 0; i < spriteMap.length; i++) {
-  //     const cube = spriteMap[i];
-  //     for(let j = 0; j < cube.length; j++) {
-  //
-  //       const playBox = document.createElement('div');
-  //       playBox.style.width = '32px';
-  //       playBox.style.height = '32px';
-  //       playBox.style.zIndex = '1';
-  //
-  //       playBox.style.backgroundImage = 'url(images/humanss.gif)';
-  //       switch (spriteMap[i][j]){
-  //         case '@':
-  //           playBox.style.width = '16px';
-  //           playBox.style.margin = '0px 8px';
-  //           playBox.style.backgroundPosition = '-19px -19px'; //face front basic
-  //           break;
-  //
-  //       }
-  //       playBox.style.float ='left';
-  //       playBox.setAttribute('id','SpriteBox' + i + j);
-  //       main.appendChild(spriteMap);
-  //
-  //     }
-  //
-  //   }
+  // if (pressedUp === true) {
+
+
+    // charUp();
   // }
 
+  // function charUp(){
+  //     greet({
+  //       const details = [this.squaretype,this.impass]
+  //       console.log(details);
+  //     })
 
+  //   greet.call(i)
 
-
-
-
+  // 
+  //
+  // const objRef = map[x-1][y];
+  // objRef.impass === true ? pushUp() : moveUp()
+  //
+  //
+  // function pushUp(){
+  //   console.log('pushed up true');
+  // }
+  //
+  // function moveUp(){
+  //   console.log('pushed up false');
+  // }
+  // console.log(pushUp());
+  //
+  //
 
 
 
