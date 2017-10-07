@@ -6,10 +6,10 @@ document.addEventListener('DOMContentLoaded', ()=> {
     [b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b],
     [b,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,b],
     [b,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,b],
-    [b,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,b],
-    [b,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,b],
-    [b,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,b],
-    [b,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,b],
+    [b,g,b,b,b,b,b,g,g,g,g,g,g,g,g,g,g,g,g,b],
+    [b,g,b,g,g,g,b,g,g,g,g,g,g,g,g,g,g,g,g,b],
+    [b,g,b,g,g,g,b,g,g,g,g,g,g,g,g,g,g,g,g,b],
+    [b,g,b,b,g,b,b,g,g,g,g,g,g,g,g,g,g,g,g,b],
     [b,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,b],
     [b,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,b],
     [b,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,b],
@@ -79,9 +79,9 @@ document.addEventListener('DOMContentLoaded', ()=> {
 
         box.style.backgroundImage = 'url(images/tilea4.png)';
         switch (map[i][j]){
-          case 'b': box.style.backgroundPosition = '-96px -64px'; //brick
+          case 'g': box.style.backgroundPosition = '-264px -264px'; //brick
             break;
-          case 'g': box.style.backgroundPosition - '-416px -32px'; //stone
+          case 'b': box.style.backgroundPosition - '-32px -32px'; //stone
             break;
         }
         box.style.float ='left';
@@ -92,6 +92,11 @@ document.addEventListener('DOMContentLoaded', ()=> {
 
     }
   }
+function animation(){
+  
+}
+
+
   gameboard();
 
 
