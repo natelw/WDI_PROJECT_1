@@ -56,7 +56,7 @@ document.addEventListener('DOMContentLoaded', ()=> {
     switch(e.keyCode){
       case 37: pressedLeft = true;
         break;
-      case 38: pressedUp = true;
+      case 38: pressUp();
         break;
       case 39: pressedRight = true;
         break;
@@ -94,9 +94,9 @@ document.addEventListener('DOMContentLoaded', ()=> {
         box.style.width = '32px';
         box.style.height = '32px';
         //box.setAttribute('id','box ' + i +' '+ j);
-        box.setAttribute('xPos',i);
-        box.setAttribute('yPos',j);
-        box.setAttribute('id','box ' + i +' '+ j);
+        box.setAttribute('xpos',i);
+        box.setAttribute('ypos',j);
+        box.setAttribute('id','box_' + i +'_'+ j);
 
         box.style.backgroundImage = 'url(images/tilea4.png)';
         switch (map[i][j]){
@@ -113,6 +113,7 @@ document.addEventListener('DOMContentLoaded', ()=> {
             box.style.backgroundPosition = '-19px -19px'; //face front basic
             box.setAttribute('id','player');
             box.setAttribute('impass','player');
+            box.setAttribute('lastSquare','b');
             break;
 
         }
@@ -127,21 +128,42 @@ document.addEventListener('DOMContentLoaded', ()=> {
 gameboard();
 
 function getPosition(){
-    const player = document.getElementById('#player');
-    const xposition = player.xpos;
-    const yposition = player.ypos;
-    const aboveTile = map[xposition-1][yposition];
-    aboveTile
+    const player = document.getElementById('player');
+    const xposition = player.getAttribute('xpos');
+    const yposition = player.getAttribute('ypos');
+    console.log(xposition,yposition);
+    return [xposition,yposition];
+
 }
 
 
   function pressUp(){
-    const player = document.getElementById('#player');
-    const xposition = player.xpos;
-    const yposition = player.ypos;
+    const playPos = getPosition();
+    let xaxis = playPos[0];
+    let yaxis = playPos[1];
+    if (xaxis === 0){
+      pushUp();
+    }else{
+      xaxis--;
+      const x = 'box_' + xaxis + '_' + yaxis;
+      console.log(x);
+      const boxAbove = document.getElementById(x);
+      const boxImpass = boxAbove.getAttribute('impass');
+      boxImpass === 'true' ? pushUp() : moveUp();
 
-  }
-          //
+    }
+
+    function moveUp(){
+      console.log('moved up');
+
+    }
+
+    if (pressedUp === true){
+      console.log('hiya');
+    }
+
+
+  }      //
           // const obj =  squareGen(map[i][j]);
           // obj.xpos = i;
           // obj.ypos = j;
