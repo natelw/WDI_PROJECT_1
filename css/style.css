@@ -12,11 +12,11 @@ body {
 .control {
 width:390px;
 height: 630px;
-border: 5px groove #7f727b;
+border: 5px solid #7f727b;
 position: fixed;
 left: 660px;
-background:linear-gradient(#544657, #7f727b);
-background-color:#544657 ;
+background:linear-gradient(#ccc, #eee);
+background-color:#ccc;
 border-radius: 10px;
 }
 
@@ -24,11 +24,15 @@ border-radius: 10px;
 position: relative;
 top: 30px;
 left: 25px;
-border: 5px ridge #7f727b;
 width:330px;
-height: 160px;
-background-color: #7f727b;
+height: 60px;
+background-color: #544657;
 border-radius: 20px;
+  -moz-box-shadow:     inset 0px 0px 10px #544657;
+  -webkit-box-shadow:  inset 0px 0px 10px #544657;
+  box-shadow:          inset 0px 0px 10px #544657;
+  border: 2px solid black;
+
 
 }
 /* #f0731e
@@ -39,11 +43,11 @@ font-family: 'Bungee Hairline', cursive;
 .title {
   font-family: 'Bungee', cursive;
   position: relative;
-  left: 10px;
-  top: 20px;
+  left: 30px;
+  top: -10px;
   color: white;
   font-weight: bold;
-  color:white; 
+  color:white;
   text-shadow: 0 1px 0 #ccc,
                0 2px 0 #c9c9c9,
                0 3px 0 #bbb,
