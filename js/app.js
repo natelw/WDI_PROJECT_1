@@ -131,7 +131,7 @@ function getPosition(){
     const player = document.getElementById('player');
     const xposition = player.getAttribute('xpos');
     const yposition = player.getAttribute('ypos');
-    console.log(xposition,yposition);
+    console.log(xposition,yposition +' x and y position of player');
     return [xposition,yposition];
 
 }
@@ -145,19 +145,32 @@ function getPosition(){
       pushUp();
     }else{
       xaxis--;
-      const x = 'box_' + xaxis + '_' + yaxis;
-      console.log(x);
-      const boxAbove = document.getElementById(x);
-      const boxImpass = boxAbove.getAttribute('impass');
-      boxImpass === 'true' ? pushUp() : moveUp();
+      const boxId= 'box_' + xaxis + '_' + yaxis;
+      const moveLoc = [String(xaxis),String(yaxis)]
+      console.log(boxId +' box Id of box moving too');
+      const boxAbove = document.getElementById(boxId);
+      //const boxImpass = boxAbove.getAttribute('impass');
+      moveUp(moveLoc,playPos);
+      console.log(moveLoc,playPos);
 
     }
 
-    function moveUp(){
-      console.log('moved up');
+    function moveUp(sqToMove,sqCurrent){
+
+      const lastSq = document.getElementById('player').getAttribute('lastSquare');
+      map[Number(sqCurrent[0])][Number(sqCurrent[1])] = lastSq;
+      console.log(map[Number(sqToMove[0])][Number(sqToMove[1])]);
+
+      map[Number(sqToMove[0])][Number(sqToMove[1])] = '@';
+      console.log(map[Number(sqToMove[0])][Number(sqToMove[1])]);
+      console.log(map[10][15]+'player?');
+      console.log(map[10][16]+'b?');
+      // const newCharSq = document.getElementById(sqToMove);
+      gameboard();
+    }
+    function pushUp(){
 
     }
-
     if (pressedUp === true){
       console.log('hiya');
     }
