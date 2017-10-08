@@ -174,10 +174,10 @@ function getPosition(){
       xaxis--;
 
       const boxId= 'box_' + xaxis + '_' + yaxis;
-
+      console.log(boxId +'  box Id in pressUp');
       const moveLoc = [String(xaxis),String(yaxis)]
-
-
+console.log(moveLoc +'  moveLoc');
+console.log(playPos + '  player position');
       moveUp(moveLoc,playPos,boxId);
       console.log(moveLoc,playPos,boxId);
 
@@ -187,8 +187,11 @@ function getPosition(){
 
       const  box = document.getElementById(boxId);
       const player = document.getElementById('player');
-      box.setAttribute('xpos',movePos[0]);
-      box.setAttribute('ypos',movePos[1]);
+      player.setAttribute('xpos',movePos[0]);
+      player.setAttribute('ypos',movePos[1]);
+      player.setAttribute('lastxpos',playPos[0]);
+      player.setAttribute('lastypos',playPos[1]);
+
       box.appendChild(player);
 
     }
