@@ -1,23 +1,8 @@
 document.addEventListener('DOMContentLoaded', ()=> {
   console.log('up and running');
 
-  function squareGen(squareType){
-    const squareObj =   new Object();
-    squareObj.squareType = squareType;
-    switch (squareType){
-      case 'b': squareObj.impass = true;
 
-        break; // stonewall
-      case 'g': squareObj.impass = false;
-        break; // dirt
-      case 'x': squareObj.impass = true;
-        squareObj.lastSquare = 'g';
-        break; // player
-    }
-    return squareObj;
-  }
-
-function createPlayer(location){
+  function createPlayer(){
 
     const playerBox = document.createElement('div');
     playerBox.style.width = '16px';
@@ -27,7 +12,6 @@ function createPlayer(location){
     playerBox.style.backgroundPosition = '-19px -19px'; //face front basic
     playerBox.setAttribute('id','player');
     playerBox.setAttribute('impass','player');
-    playerBox.setAttribute('lastSquare','b');
     playerBox.setAttribute('xpos','10');
     playerBox.setAttribute('ypos','15');
     playerBox.setAttribute('lastxpos','10');
@@ -70,14 +54,8 @@ function createPlayer(location){
   ];
 
   // keypress handler
-  let pressedLeft = 'false';
-  let pressedRight = 'false';
-  let pressedUp = 'false';
-  let pressedDown = 'false';
-  let pressedSpace = 'false';
   const main = document.getElementById('container');
   document.addEventListener('keydown',(e) =>{     //change to jquery
-    console.log(e.keyCode);
     switch(e.keyCode){
       case 37: pressLeft();
         break;
@@ -91,7 +69,7 @@ function createPlayer(location){
         break;
     }
   }, false);
-
+  // move player around
   function move(movePos,playPos,boxId){
 
     const  box = document.getElementById(boxId);
@@ -100,7 +78,6 @@ function createPlayer(location){
     player.setAttribute('ypos',movePos[1]);
     player.setAttribute('lastxpos',playPos[0]);
     player.setAttribute('lastypos',playPos[1]);
-
     box.appendChild(player);
 
   }
@@ -131,29 +108,18 @@ function createPlayer(location){
         const box = document.createElement('div');
         box.style.width = '32px';
         box.style.height = '32px';
-        //box.setAttribute('id','box ' + i +' '+ j);
         box.setAttribute('xpos',i);
         box.setAttribute('ypos',j);
         box.setAttribute('id','box_' + i +'_'+ j);
-
-
         box.style.backgroundImage = 'url(images/tilea4.png)';
+
         switch (map[i][j]){
           case 'g': box.style.backgroundPosition = '-264px -264px';
-            box.setAttribute('impass','false'); //brick
+            box.setAttribute('impass','false');
             break;
           case 'b': box.style.backgroundPosition - '-32px -32px';
-            box.setAttribute('impass','true'); //stone
+            box.setAttribute('impass','true');
             break;
-          // case '@':
-          //   box.style.width = '16px';
-          //   box.style.margin = '0px 8px';
-          //   box.style.backgroundImage = 'url(images/humanss.gif)';
-          //   box.style.backgroundPosition = '-35px -19px'; //face front basic
-          //   box.setAttribute('id','player');
-          //   box.setAttribute('impass','player');
-          //   box.setAttribute('lastSquare','b');
-          //   break;
 
         }
         box.style.float ='left';
@@ -197,7 +163,7 @@ function createPlayer(location){
     let xaxis = playPos[0];
     const yaxis = playPos[1];
     if (xaxis === 0){
-      pushUp();
+      return;
     }else{
       xaxis--;
       const boxId= 'box_' + xaxis + '_' + yaxis;
@@ -209,14 +175,11 @@ function createPlayer(location){
     const playPos = getPosition();
     const xaxis = playPos[0];
     let yaxis = playPos[1];
-    if (yaxis === 0){
-      pushUp();
-    }else{
-      yaxis--;
-      const boxId= 'box_' + xaxis + '_' + yaxis;
-      const moveLoc = [String(xaxis),String(yaxis)];
-      move(moveLoc,playPos,boxId);
-    }
+    yaxis--;
+    const boxId= 'box_' + xaxis + '_' + yaxis;
+    const moveLoc = [String(xaxis),String(yaxis)];
+    move(moveLoc,playPos,boxId);
+
   }
 
   function pressRight(){
