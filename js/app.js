@@ -85,12 +85,25 @@ function createPlayer(location){
         break;
       case 39: pressedRight = true;
         break;
-      case 40: pressedDown = true;
+      case 40: pressDown();
         break;
       case 32: pressedSpace = true;
         break;
     }
   }, false);
+
+  function move(movePos,playPos,boxId){
+
+    const  box = document.getElementById(boxId);
+    const player = document.getElementById('player');
+    player.setAttribute('xpos',movePos[0]);
+    player.setAttribute('ypos',movePos[1]);
+    player.setAttribute('lastxpos',playPos[0]);
+    player.setAttribute('lastypos',playPos[1]);
+
+    box.appendChild(player);
+
+  }
 
   document.addEventListener('keyup',(e) => {
     switch(e.keyCode){
@@ -151,18 +164,33 @@ function createPlayer(location){
     }
   }
 
-gameboard();
-createPlayer();
+  gameboard();
+  createPlayer();
 
-function getPosition(){
+  function getPosition(){
     const player = document.getElementById('player');
     const xposition = player.getAttribute('xpos');
     const yposition = player.getAttribute('ypos');
     console.log(xposition,yposition +' x and y position of player');
     return [xposition,yposition];
 
-}
+  }
 
+
+  function pressDown(){
+    const playPos = getPosition();
+    let xaxis = playPos[0];
+    const yaxis = playPos[1];
+    if (xaxis === 0){
+      pushUp();
+    }else{
+      xaxis++;
+      const boxId= 'box_' + xaxis + '_' + yaxis;
+      const moveLoc = [String(xaxis),String(yaxis)];
+      move(moveLoc,playPos,boxId);
+
+    }
+  }
 
   function pressUp(){
     const playPos = getPosition();
@@ -172,48 +200,11 @@ function getPosition(){
       pushUp();
     }else{
       xaxis--;
-
       const boxId= 'box_' + xaxis + '_' + yaxis;
-      console.log(boxId +'  box Id in pressUp');
-      const moveLoc = [String(xaxis),String(yaxis)]
-console.log(moveLoc +'  moveLoc');
-console.log(playPos + '  player position');
-      moveUp(moveLoc,playPos,boxId);
-      console.log(moveLoc,playPos,boxId);
-
+      const moveLoc = [String(xaxis),String(yaxis)];
+      move(moveLoc,playPos,boxId);
     }
-
-    function moveUp(movePos,playPos,boxId){
-
-      const  box = document.getElementById(boxId);
-      const player = document.getElementById('player');
-      player.setAttribute('xpos',movePos[0]);
-      player.setAttribute('ypos',movePos[1]);
-      player.setAttribute('lastxpos',playPos[0]);
-      player.setAttribute('lastypos',playPos[1]);
-
-      box.appendChild(player);
-
-    }
-    function pushUp(){
-
-    }
-    if (pressedUp === true){
-      console.log('hiya');
-    }
-
-
-  }      //
-          // const obj =  squareGen(map[i][j]);
-          // obj.xpos = i;
-          // obj.ypos = j;
-          // obj.id = 'box'+i+'_'+j;
-          //
-          // let xaxis = 0;
-          // i === 0 ? xaxis = 0 : xaxis = i - 1;
-          //
-          // const checkSquare = map[xaxis][j]
-          // console.log(checkSquare)
+  }
 
 
 });
