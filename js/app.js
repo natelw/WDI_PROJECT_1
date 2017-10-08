@@ -79,11 +79,11 @@ function createPlayer(location){
   document.addEventListener('keydown',(e) =>{     //change to jquery
     console.log(e.keyCode);
     switch(e.keyCode){
-      case 37: pressedLeft = true;
+      case 37: pressLeft();
         break;
       case 38: pressUp();
         break;
-      case 39: pressedRight = true;
+      case 39: pressRight();
         break;
       case 40: pressDown();
         break;
@@ -200,6 +200,33 @@ function createPlayer(location){
       pushUp();
     }else{
       xaxis--;
+      const boxId= 'box_' + xaxis + '_' + yaxis;
+      const moveLoc = [String(xaxis),String(yaxis)];
+      move(moveLoc,playPos,boxId);
+    }
+  }
+  function pressLeft(){
+    const playPos = getPosition();
+    const xaxis = playPos[0];
+    let yaxis = playPos[1];
+    if (yaxis === 0){
+      pushUp();
+    }else{
+      yaxis--;
+      const boxId= 'box_' + xaxis + '_' + yaxis;
+      const moveLoc = [String(xaxis),String(yaxis)];
+      move(moveLoc,playPos,boxId);
+    }
+  }
+
+  function pressRight(){
+    const playPos = getPosition();
+    const xaxis = playPos[0];
+    let yaxis = playPos[1];
+    if (yaxis === 0){
+      pushUp();
+    }else{
+      yaxis++;
       const boxId= 'box_' + xaxis + '_' + yaxis;
       const moveLoc = [String(xaxis),String(yaxis)];
       move(moveLoc,playPos,boxId);
