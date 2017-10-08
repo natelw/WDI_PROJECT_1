@@ -17,9 +17,35 @@ document.addEventListener('DOMContentLoaded', ()=> {
     return squareObj;
   }
 
+function createPlayer(location){
+
+    const playerBox = document.createElement('div');
+    playerBox.style.width = '16px';
+    playerBox.style.height= '32px';
+    playerBox.style.margin = '0px 8px';
+    playerBox.style.backgroundImage = 'url(images/humanss.gif)';
+    playerBox.style.backgroundPosition = '-19px -19px'; //face front basic
+    playerBox.setAttribute('id','player');
+    playerBox.setAttribute('impass','player');
+    playerBox.setAttribute('lastSquare','b');
+    playerBox.setAttribute('xpos','10');
+    playerBox.setAttribute('ypos','15');
+    playerBox.setAttribute('lastxpos','10');
+    playerBox.setAttribute('lastypos','15');
+    playerBox.style.position ='relative';
+    playerBox.style.top ='0px';
+    playerBox.style.left ='0px';
+    playerBox.style.zIndex ='1';
+    const box = document.getElementById('box_10_15');
+    box.appendChild(playerBox);
+
+  }
+
+
   const b = 'b';
   const g = 'g';
-  const x = '@';
+
+
   const map = [ // level map
     [b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b],
     [b,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,b],
@@ -37,13 +63,12 @@ document.addEventListener('DOMContentLoaded', ()=> {
     [b,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,b],
     [b,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,b],
     [b,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,b],
-    [b,g,g,g,g,g,g,g,g,g,x,g,g,g,g,g,g,g,g,b],
+    [b,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,b],
     [b,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,b],
     [b,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,b],
     [b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b]
   ];
 
-  const infoMap = [];
   // keypress handler
   let pressedLeft = 'false';
   let pressedRight = 'false';
@@ -98,6 +123,7 @@ document.addEventListener('DOMContentLoaded', ()=> {
         box.setAttribute('ypos',j);
         box.setAttribute('id','box_' + i +'_'+ j);
 
+
         box.style.backgroundImage = 'url(images/tilea4.png)';
         switch (map[i][j]){
           case 'g': box.style.backgroundPosition = '-264px -264px';
@@ -106,15 +132,15 @@ document.addEventListener('DOMContentLoaded', ()=> {
           case 'b': box.style.backgroundPosition - '-32px -32px';
             box.setAttribute('impass','true'); //stone
             break;
-          case '@':
-            box.style.width = '16px';
-            box.style.margin = '0px 8px';
-            box.style.backgroundImage = 'url(images/humanss.gif)';
-            box.style.backgroundPosition = '-19px -19px'; //face front basic
-            box.setAttribute('id','player');
-            box.setAttribute('impass','player');
-            box.setAttribute('lastSquare','b');
-            break;
+          // case '@':
+          //   box.style.width = '16px';
+          //   box.style.margin = '0px 8px';
+          //   box.style.backgroundImage = 'url(images/humanss.gif)';
+          //   box.style.backgroundPosition = '-35px -19px'; //face front basic
+          //   box.setAttribute('id','player');
+          //   box.setAttribute('impass','player');
+          //   box.setAttribute('lastSquare','b');
+          //   break;
 
         }
         box.style.float ='left';
@@ -126,6 +152,7 @@ document.addEventListener('DOMContentLoaded', ()=> {
   }
 
 gameboard();
+createPlayer();
 
 function getPosition(){
     const player = document.getElementById('player');
@@ -140,33 +167,30 @@ function getPosition(){
   function pressUp(){
     const playPos = getPosition();
     let xaxis = playPos[0];
-    let yaxis = playPos[1];
+    const yaxis = playPos[1];
     if (xaxis === 0){
       pushUp();
     }else{
       xaxis--;
+
       const boxId= 'box_' + xaxis + '_' + yaxis;
+
       const moveLoc = [String(xaxis),String(yaxis)]
-      console.log(boxId +' box Id of box moving too');
-      const boxAbove = document.getElementById(boxId);
-      //const boxImpass = boxAbove.getAttribute('impass');
-      moveUp(moveLoc,playPos);
-      console.log(moveLoc,playPos);
+
+
+      moveUp(moveLoc,playPos,boxId);
+      console.log(moveLoc,playPos,boxId);
 
     }
 
-    function moveUp(sqToMove,sqCurrent){
+    function moveUp(movePos,playPos,boxId){
 
-      const lastSq = document.getElementById('player').getAttribute('lastSquare');
-      map[Number(sqCurrent[0])][Number(sqCurrent[1])] = lastSq;
-      console.log(map[Number(sqToMove[0])][Number(sqToMove[1])]);
+      const  box = document.getElementById(boxId);
+      const player = document.getElementById('player');
+      box.setAttribute('xpos',movePos[0]);
+      box.setAttribute('ypos',movePos[1]);
+      box.appendChild(player);
 
-      map[Number(sqToMove[0])][Number(sqToMove[1])] = '@';
-      console.log(map[Number(sqToMove[0])][Number(sqToMove[1])]);
-      console.log(map[10][15]+'player?');
-      console.log(map[10][16]+'b?');
-      // const newCharSq = document.getElementById(sqToMove);
-      gameboard();
     }
     function pushUp(){
 
@@ -187,5 +211,6 @@ function getPosition(){
           //
           // const checkSquare = map[xaxis][j]
           // console.log(checkSquare)
+
 
 });
