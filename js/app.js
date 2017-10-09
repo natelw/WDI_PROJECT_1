@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', ()=> {
   console.log('up and running');
 
 
-  function createPlayer(){
+  function createPlayer(location){
 
     const playerBox = document.createElement('div');
     playerBox.style.width = '16px';
@@ -11,16 +11,16 @@ document.addEventListener('DOMContentLoaded', ()=> {
     playerBox.style.backgroundImage = 'url(images/humanss.gif)';
     playerBox.style.backgroundPosition = '-19px -19px'; //face front basic
     playerBox.setAttribute('id','player');
-    playerBox.setAttribute('impass','player');
-    playerBox.setAttribute('xpos','10');
-    playerBox.setAttribute('ypos','15');
-    playerBox.setAttribute('lastxpos','10');
-    playerBox.setAttribute('lastypos','15');
+    playerBox.setAttribute('state','player');
+    playerBox.setAttribute('xpos',location[0]);
+    playerBox.setAttribute('ypos',location[1]);
+    playerBox.setAttribute('lastxpos',location[0]);
+    playerBox.setAttribute('lastypos',location[1]);
     playerBox.style.position ='relative';
     playerBox.style.top ='0px';
     playerBox.style.left ='0px';
     playerBox.style.zIndex ='2';
-    const box = document.getElementById('box_10_15');
+    const box = document.getElementById('box_'+location[0]+'_'+location[1]);
     box.appendChild(playerBox);
 
   }
@@ -35,24 +35,24 @@ document.addEventListener('DOMContentLoaded', ()=> {
     itemBox.style.top ='0px';
     itemBox.style.left = '0px';
     itemBox.style.zIndex = '1';
-    itemBox.style.backgroundImage = 'url(images/humanss.gif)';
-    itemBox.style.backgroundPosition = '-19px -19px';
+
     itemBox.setAttribute('type',type);
 console.log(itemBox);
-    // switch (type){
-    //   case 'h':{
-    //     itemBox.style.backgroundImage = 'url(images/humanss.gif)';
-    //     itemBox.style.backgroundPosition = '-19px -19px';
-    //     break;
-    //   }
-    //   case 'p':{
-    //     itemBox.style.backgroundImage = 'url(images/humanss.gif)';
-    //     itemBox.style.backgroundPosition = '-19px -19px';
-    //     break;
-    //   }
-    // }
+    switch (type){
+      case 'h':{
+        itemBox.style.backgroundImage = 'url(images/humanss.gif)';
+        itemBox.style.backgroundPosition = '-19px -19px';
+        itemBox.setAttribute('id','heart_'+location[0]+'_'+location[1])
+        break;
+      }
+      case 'p':{
+        itemBox.style.backgroundImage = 'url(images/humanss.gif)';
+        itemBox.style.backgroundPosition = '-19px -19px';
+        break;
+      }
+    }
 
-    let boxer = document.getElementById('box_5_5');
+    const boxer = document.getElementById('box_'+location[0]+'_'+location[1]);
     boxer.appendChild(itemBox);
 
   }
@@ -146,13 +146,13 @@ console.log(itemBox);
 
         switch (map[i][j]){
           case 'g': box.style.backgroundPosition = '-264px -264px'; // dirt
-            box.setAttribute('impass','false');
+            box.setAttribute('state','false');
             break;
           case 'b': box.style.backgroundPosition - '-32px -32px'; //stone
-            box.setAttribute('impass','true');
+            box.setAttribute('state','true');
             break;
           case 'w': box.style.backgroundPosition = '-390px -360px'; //bad lava
-            box.setAttribute('impass','true');
+            box.setAttribute('state','true');
         }
         box.style.float ='left';
         main.appendChild(box);
@@ -163,8 +163,9 @@ console.log(itemBox);
   }
 
   gameboard();
-  createPlayer();
-  createItem('b',[0,1])
+  createPlayer([2,2]);
+  createItem('h',[10,10])
+
   function getPosition(){
     const player = document.getElementById('player');
     const xposition = player.getAttribute('xpos');
@@ -185,13 +186,13 @@ console.log(itemBox);
     xaxis++;
     const boxId= 'box_' + xaxis + '_' + yaxis;
     const  moveToBox = document.getElementById(boxId);
-    const impasser = moveToBox.getAttribute('impass');
+    const stater = moveToBox.getAttribute('state');
 
-    console.log(impasser);
+    console.log(stater);
     if (xaxis > 18){
       console.log('border');
-    }else if(impasser === 'true'){
-      console.log('impassable move');
+    }else if(stater === 'true'){
+      console.log('stateable move');
     }else{
       console.log(xaxis+ '   x-Axis after mod');
       console.log(yaxis+'   y-Axis after mod');
@@ -209,11 +210,11 @@ console.log(itemBox);
     xaxis--;
     const boxId= 'box_' + xaxis + '_' + yaxis;
     const  moveToBox = document.getElementById(boxId);
-    const impasser = moveToBox.getAttribute('impass');
+    const stater = moveToBox.getAttribute('state');
     if (xaxis < 1){
       console.log('border');
-    }else if(impasser === 'true'){
-      console.log('impassable move');
+    }else if(stater === 'true'){
+      console.log('stateable move');
     }else{
 
       const boxId= 'box_' + xaxis + '_' + yaxis;
@@ -228,12 +229,12 @@ console.log(itemBox);
     yaxis--;
     const boxId= 'box_' + xaxis + '_' + yaxis;
     const  moveToBox = document.getElementById(boxId);
-    const impasser = moveToBox.getAttribute('impass');
+    const stater = moveToBox.getAttribute('state');
 
     if (yaxis < 1){
       console.log('border');
-    }else if(impasser === 'true'){
-      console.log('impassable move');
+    }else if(stater === 'true'){
+      console.log('stateable move');
     }else{
       const boxId= 'box_' + xaxis + '_' + yaxis;
       const moveLoc = [String(xaxis),String(yaxis)];
@@ -248,11 +249,11 @@ console.log(itemBox);
     yaxis++;
     const boxId= 'box_' + xaxis + '_' + yaxis;
     const  moveToBox = document.getElementById(boxId);
-    const impasser = moveToBox.getAttribute('impass');
+    const stater = moveToBox.getAttribute('state');
     if (yaxis > 18){
       console.log('border');
-    }else if(impasser === 'true'){
-      console.log('impassable move');
+    }else if(stater === 'true'){
+      console.log('stateable move');
     }else{
       const boxId= 'box_' + xaxis + '_' + yaxis;
       const moveLoc = [String(xaxis),String(yaxis)];
