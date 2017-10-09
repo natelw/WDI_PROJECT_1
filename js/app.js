@@ -37,12 +37,11 @@ document.addEventListener('DOMContentLoaded', ()=> {
     itemBox.style.zIndex = '1';
 
     itemBox.setAttribute('type',type);
-console.log(itemBox);
     switch (type){
       case 'h':{
         itemBox.style.backgroundImage = 'url(images/humanss.gif)';
         itemBox.style.backgroundPosition = '-19px -19px';
-        itemBox.setAttribute('id','heart_'+location[0]+'_'+location[1])
+        itemBox.setAttribute('id','heart_'+location[0]+'_'+location[1]);
         break;
       }
       case 'p':{
@@ -164,13 +163,12 @@ console.log(itemBox);
 
   gameboard();
   createPlayer([2,2]);
-  createItem('h',[10,10])
+  createItem('h',[10,10]);
 
   function getPosition(){
     const player = document.getElementById('player');
     const xposition = player.getAttribute('xpos');
     const yposition = player.getAttribute('ypos');
-    console.log(xposition,yposition +' x and y position of player');
     return [xposition,yposition];
 
   }
@@ -180,22 +178,17 @@ console.log(itemBox);
     const playPos = getPosition();
     let xaxis = playPos[0];
     const yaxis = playPos[1];
-    console.log(xaxis+ '   x-Axis');
-    console.log(yaxis+'   y-Axis');
 
     xaxis++;
     const boxId= 'box_' + xaxis + '_' + yaxis;
     const  moveToBox = document.getElementById(boxId);
     const stater = moveToBox.getAttribute('state');
 
-    console.log(stater);
     if (xaxis > 18){
       console.log('border');
     }else if(stater === 'true'){
-      console.log('stateable move');
+      console.log('blocked move');
     }else{
-      console.log(xaxis+ '   x-Axis after mod');
-      console.log(yaxis+'   y-Axis after mod');
       const boxId= 'box_' + xaxis + '_' + yaxis;
       const moveLoc = [String(xaxis),String(yaxis)];
       move(moveLoc,playPos,boxId);
@@ -214,7 +207,7 @@ console.log(itemBox);
     if (xaxis < 1){
       console.log('border');
     }else if(stater === 'true'){
-      console.log('stateable move');
+      console.log('blocked move');
     }else{
 
       const boxId= 'box_' + xaxis + '_' + yaxis;
@@ -234,7 +227,7 @@ console.log(itemBox);
     if (yaxis < 1){
       console.log('border');
     }else if(stater === 'true'){
-      console.log('stateable move');
+      console.log('blocked move');
     }else{
       const boxId= 'box_' + xaxis + '_' + yaxis;
       const moveLoc = [String(xaxis),String(yaxis)];
@@ -253,7 +246,7 @@ console.log(itemBox);
     if (yaxis > 18){
       console.log('border');
     }else if(stater === 'true'){
-      console.log('stateable move');
+      console.log('blocked move');
     }else{
       const boxId= 'box_' + xaxis + '_' + yaxis;
       const moveLoc = [String(xaxis),String(yaxis)];
