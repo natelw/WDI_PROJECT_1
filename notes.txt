@@ -10,3 +10,4 @@ second postion -35 -19;
 -131 -19
 frames for walk back;
 same as walkforward but -x -88px
+-238 -238

@@ -19,16 +19,46 @@ document.addEventListener('DOMContentLoaded', ()=> {
     playerBox.style.position ='relative';
     playerBox.style.top ='0px';
     playerBox.style.left ='0px';
-    playerBox.style.zIndex ='1';
+    playerBox.style.zIndex ='2';
     const box = document.getElementById('box_10_15');
     box.appendChild(playerBox);
 
   }
+  function createItem(type,location){
+    const itemBox = document.createElement('div');
+    itemBox.style.width = '32px';
+    itemBox.style.height = '32px';
+    itemBox.style.margin = '0px';
+    itemBox.setAttribute('xpos',location[0]);
+    itemBox.setAttribute('ypos',location[1]);
+    itemBox.style.position ='relative';
+    itemBox.style.top ='0px';
+    itemBox.style.left = '0px';
+    itemBox.style.zIndex = '1';
+    itemBox.style.backgroundImage = 'url(images/humanss.gif)';
+    itemBox.style.backgroundPosition = '-19px -19px';
 
+    // switch (type){
+    //   case 'h':{
+    //     itemBox.style.backgroundImage = 'url(images/humanss.gif)';
+    //     itemBox.style.backgroundPosition = '-19px -19px';
+    //     break;
+    //   }
+    //   case 'p':{
+    //     itemBox.style.backgroundImage = 'url(images/humanss.gif)';
+    //     itemBox.style.backgroundPosition = '-19px -19px';
+    //     break;
+    //   }
+    // }
 
+    const boxer = document.getElementById('box_5_5');
+    boxer.appendChild(itemBox);
+
+  }
+  
   const b = 'b';
   const g = 'g';
-
+  const w = 'w';
 
   const map = [ // level map
     [b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b],
@@ -46,7 +76,7 @@ document.addEventListener('DOMContentLoaded', ()=> {
     [b,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,b],
     [b,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,b],
     [b,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,b],
-    [b,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,b],
+    [w,w,w,w,w,w,w,g,g,g,g,g,g,g,g,g,g,g,g,b],
     [b,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,b],
     [b,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,b],
     [b,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,b],
@@ -114,13 +144,14 @@ document.addEventListener('DOMContentLoaded', ()=> {
         box.style.backgroundImage = 'url(images/tilea4.png)';
 
         switch (map[i][j]){
-          case 'g': box.style.backgroundPosition = '-264px -264px';
+          case 'g': box.style.backgroundPosition = '-264px -264px'; // dirt
             box.setAttribute('impass','false');
             break;
-          case 'b': box.style.backgroundPosition - '-32px -32px';
+          case 'b': box.style.backgroundPosition - '-32px -32px'; //stone
             box.setAttribute('impass','true');
             break;
-
+          case 'w': box.style.backgroundPosition = '-390px -360px'; //bad lava
+            box.setAttribute('impass','true');
         }
         box.style.float ='left';
         main.appendChild(box);
@@ -226,6 +257,10 @@ document.addEventListener('DOMContentLoaded', ()=> {
       const moveLoc = [String(xaxis),String(yaxis)];
       move(moveLoc,playPos,boxId);
     }
+  }
+
+  function animation(){
+
   }
 
 
