@@ -147,10 +147,15 @@ document.addEventListener('DOMContentLoaded', ()=> {
     const playPos = getPosition();
     let xaxis = playPos[0];
     const yaxis = playPos[1];
-    if (xaxis === 0){
-      pushUp();
+    console.log(xaxis+ '   x-Axis');
+    console.log(yaxis+'   y-Axis');
+
+    xaxis++;
+    if (xaxis > 18){
+      console.log('border');
     }else{
-      xaxis++;
+      console.log(xaxis+ '   x-Axis after mod');
+      console.log(yaxis+'   y-Axis after mod');
       const boxId= 'box_' + xaxis + '_' + yaxis;
       const moveLoc = [String(xaxis),String(yaxis)];
       move(moveLoc,playPos,boxId);
@@ -162,10 +167,11 @@ document.addEventListener('DOMContentLoaded', ()=> {
     const playPos = getPosition();
     let xaxis = playPos[0];
     const yaxis = playPos[1];
-    if (xaxis === 0){
-      return;
+    xaxis--;
+    if (xaxis < 1){
+      console.log('border');
     }else{
-      xaxis--;
+
       const boxId= 'box_' + xaxis + '_' + yaxis;
       const moveLoc = [String(xaxis),String(yaxis)];
       move(moveLoc,playPos,boxId);
@@ -176,20 +182,24 @@ document.addEventListener('DOMContentLoaded', ()=> {
     const xaxis = playPos[0];
     let yaxis = playPos[1];
     yaxis--;
-    const boxId= 'box_' + xaxis + '_' + yaxis;
-    const moveLoc = [String(xaxis),String(yaxis)];
-    move(moveLoc,playPos,boxId);
-
+    if (yaxis < 1){
+      console.log('border');
+    }else{
+      const boxId= 'box_' + xaxis + '_' + yaxis;
+      const moveLoc = [String(xaxis),String(yaxis)];
+      move(moveLoc,playPos,boxId);
+    }
   }
 
   function pressRight(){
     const playPos = getPosition();
     const xaxis = playPos[0];
     let yaxis = playPos[1];
-    if (yaxis === 0){
-      pushUp();
+    yaxis++;
+    if (yaxis > 18){
+      console.log('border');
+    
     }else{
-      yaxis++;
       const boxId= 'box_' + xaxis + '_' + yaxis;
       const moveLoc = [String(xaxis),String(yaxis)];
       move(moveLoc,playPos,boxId);
