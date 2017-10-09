@@ -39,8 +39,8 @@ document.addEventListener('DOMContentLoaded', ()=> {
     itemBox.setAttribute('type',type);
     switch (type){
       case 'h':{
-        itemBox.style.backgroundImage = 'url(images/humanss.gif)';
-        itemBox.style.backgroundPosition = '-19px -19px';
+        itemBox.style.backgroundImage = 'url(images/itemsprite.png)';
+        itemBox.style.backgroundPosition = '-64px 0px';
         itemBox.setAttribute('id','heart_'+location[0]+'_'+location[1]);
         break;
       }
