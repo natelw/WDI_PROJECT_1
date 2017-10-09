@@ -151,8 +151,15 @@ document.addEventListener('DOMContentLoaded', ()=> {
     console.log(yaxis+'   y-Axis');
 
     xaxis++;
+    const boxId= 'box_' + xaxis + '_' + yaxis;
+    const  moveToBox = document.getElementById(boxId);
+    const impasser = moveToBox.getAttribute('impass');
+
+    console.log(impasser);
     if (xaxis > 18){
       console.log('border');
+    }else if(impasser === 'true'){
+      console.log('impassable move');
     }else{
       console.log(xaxis+ '   x-Axis after mod');
       console.log(yaxis+'   y-Axis after mod');
@@ -168,8 +175,13 @@ document.addEventListener('DOMContentLoaded', ()=> {
     let xaxis = playPos[0];
     const yaxis = playPos[1];
     xaxis--;
+    const boxId= 'box_' + xaxis + '_' + yaxis;
+    const  moveToBox = document.getElementById(boxId);
+    const impasser = moveToBox.getAttribute('impass');
     if (xaxis < 1){
       console.log('border');
+    }else if(impasser === 'true'){
+      console.log('impassable move');
     }else{
 
       const boxId= 'box_' + xaxis + '_' + yaxis;
@@ -182,8 +194,14 @@ document.addEventListener('DOMContentLoaded', ()=> {
     const xaxis = playPos[0];
     let yaxis = playPos[1];
     yaxis--;
+    const boxId= 'box_' + xaxis + '_' + yaxis;
+    const  moveToBox = document.getElementById(boxId);
+    const impasser = moveToBox.getAttribute('impass');
+
     if (yaxis < 1){
       console.log('border');
+    }else if(impasser === 'true'){
+      console.log('impassable move');
     }else{
       const boxId= 'box_' + xaxis + '_' + yaxis;
       const moveLoc = [String(xaxis),String(yaxis)];
@@ -196,9 +214,13 @@ document.addEventListener('DOMContentLoaded', ()=> {
     const xaxis = playPos[0];
     let yaxis = playPos[1];
     yaxis++;
+    const boxId= 'box_' + xaxis + '_' + yaxis;
+    const  moveToBox = document.getElementById(boxId);
+    const impasser = moveToBox.getAttribute('impass');
     if (yaxis > 18){
       console.log('border');
-    
+    }else if(impasser === 'true'){
+      console.log('impassable move');
     }else{
       const boxId= 'box_' + xaxis + '_' + yaxis;
       const moveLoc = [String(xaxis),String(yaxis)];
