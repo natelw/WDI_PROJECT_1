@@ -37,7 +37,8 @@ document.addEventListener('DOMContentLoaded', ()=> {
     itemBox.style.zIndex = '1';
     itemBox.style.backgroundImage = 'url(images/humanss.gif)';
     itemBox.style.backgroundPosition = '-19px -19px';
-
+    itemBox.setAttribute('type',type);
+console.log(itemBox);
     // switch (type){
     //   case 'h':{
     //     itemBox.style.backgroundImage = 'url(images/humanss.gif)';
@@ -51,11 +52,11 @@ document.addEventListener('DOMContentLoaded', ()=> {
     //   }
     // }
 
-    const boxer = document.getElementById('box_5_5');
+    let boxer = document.getElementById('box_5_5');
     boxer.appendChild(itemBox);
 
   }
-  
+
   const b = 'b';
   const g = 'g';
   const w = 'w';
@@ -163,7 +164,7 @@ document.addEventListener('DOMContentLoaded', ()=> {
 
   gameboard();
   createPlayer();
-
+  createItem('b',[0,1])
   function getPosition(){
     const player = document.getElementById('player');
     const xposition = player.getAttribute('xpos');
