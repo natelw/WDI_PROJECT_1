@@ -62,21 +62,32 @@ font-family: 'Bungee Hairline', cursive;
   text-stroke
 }
 
-@keyframes basic {
-0%, 100%, {
-  background-position: -19px -19px;
+.heart {
+width: 32px;
+    height: 32px;
+    background-image: url("images/itemsprite.png");
+
+
+            animation: heart 0.6s steps(5) infinite;
 }
-20%{
-  background-position:-35px -19px;
+
+
+@keyframes heart {
+   from { background-position:    0px -32px; }
+     to { background-position: -160px -32px; }
 }
-40%{
-  background-position: -51px -19px;
+
+.bluegem {
+width: 32px;
+    height: 32px;
+    background-image: url("images/itemsprite.png");
+
+
+            animation: bluegem 0.6s steps(3) infinite;
 }
-60%{
-  background-position: -67px -19px;
-}
-80%{
-  background-position: -83px -19px;
-}
-}
+
+
+@keyframes bluegem {
+   from { background-position:    0px 0px; }
+     to { background-position: -96px 0px; }
 }
