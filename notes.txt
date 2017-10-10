@@ -11,3 +11,8 @@ second postion -35 -19;
 frames for walk back;
 same as walkforward but -x -88px
 -238 -238
+
+
+
+
+Tuesday - create menus, reset button, go button, lives, object for player info 

@@ -1,7 +1,25 @@
 document.addEventListener('DOMContentLoaded', ()=> {
   console.log('up and running');
 
+// keeping track of info
+const playerStats = {};
+  playerStats.health = '3';
+  playerStats.currency = '0';
+  playerStats.levelAch = '1';
+  playerStats.playerBlueKey = 'false';
+  playerStats.playerGreenKey = 'false';
+  playerStats.playerYellowKey = 'false';
+  playerStats.playerRedKey = 'false';
+  playerStats.turnCounter = 0;
+  console.log(playerStats);
 
+stepCount();
+player.turnCounter++
+
+
+
+
+  //player Entity creator
   function createPlayer(location){
 
     const playerBox = document.createElement('div');
@@ -22,7 +40,7 @@ document.addEventListener('DOMContentLoaded', ()=> {
     playerBox.style.zIndex ='2';
     const box = document.getElementById('box_'+location[0]+'_'+location[1]);
     box.appendChild(playerBox);
-
+    //item entity creator
   }
   function createItem(type,location){
     const itemBox = document.createElement('div');
@@ -150,16 +168,16 @@ document.addEventListener('DOMContentLoaded', ()=> {
         box.setAttribute('xpos',i);
         box.setAttribute('ypos',j);
         box.setAttribute('id','box_' + i +'_'+ j);
-        box.style.backgroundImage = 'url(images/tilea4.png)';
+        box.style.backgroundImage = 'url(images/truetiles.png)';
 
         switch (map[i][j]){
-          case 'g': box.style.backgroundPosition = '-264px -264px'; // dirt
+          case 'g': box.style.backgroundPosition = '-32px -32px'; // chipfloor
             box.setAttribute('state','false');
             break;
-          case 'b': box.style.backgroundPosition - '-32px -32px'; //stone
-            box.setAttribute('state','true');
+          case 'b': box.style.backgroundPosition = '-64px 0px'; // bluewall
+            box.setAttribute('state','true  ');
             break;
-          case 'w': box.style.backgroundPosition = '-390px -360px'; //bad lava
+          case 'w': box.style.backgroundPosition = '-32px -64px'; //bad lava
             box.setAttribute('state','true');
         }
         box.style.float ='left';
@@ -174,6 +192,10 @@ document.addEventListener('DOMContentLoaded', ()=> {
   createPlayer([2,2]);
   createItem('h',[10,10]);
   createItem('g',[11,11]);
+  splash();
+
+
+  //find position of player
   function getPosition(){
     const player = document.getElementById('player');
     const xposition = player.getAttribute('xpos');
@@ -182,7 +204,7 @@ document.addEventListener('DOMContentLoaded', ()=> {
 
   }
 
-
+  //basic keyboard controls (needs refactoring)
   function pressDown(){
     const playPos = getPosition();
     let xaxis = playPos[0];
@@ -262,10 +284,25 @@ document.addEventListener('DOMContentLoaded', ()=> {
       move(moveLoc,playPos,boxId);
     }
   }
+//square splash screen for wins and losses.
+  function splash(){
+    const splash = document.createElement('div');
+    splash.getAttribute('class','splashy');
+    splash.getAttribute('id','splash');
+    splash.style.position = 'relative';
+    splash.style.width = '458px';
+    splash.style.height = '458px';
+    splash.style.margin = '90px';
+    splash.style.border = '2px solid black';
+    splash.style.zIndex = '5';
+    splash.style.backgroundColor ='grey'
 
-  function animation(){
-
+    const contain = document.getElementById('container');
+    contain.appendChild(splash);
   }
+
+
+
 
 
 });
