@@ -3,8 +3,8 @@ document.addEventListener('DOMContentLoaded', ()=> {
 
 // keeping track of info
 const playerStats = {};
-  playerStats.health = '3';
-  playerStats.currency = '0';
+  playerStats.lifecounter = '3';
+  playerStats.currency = 0;
   playerStats.levelAch = '1';
   playerStats.playerBlueKey = 'false';
   playerStats.playerGreenKey = 'false';
@@ -13,12 +13,33 @@ const playerStats = {};
   playerStats.turnCounter = 0;
   console.log(playerStats);
 
-stepCount();
-player.turnCounter++
-
-
-
-
+  //counter of steps
+  function stepCount(){
+    playerStats.turnCounter++;
+    const stepBoard = document.getElementById('stepcount');
+    stepBoard.innerHTML = playerStats.turnCounter;
+  }
+  //counter of lives
+  function lifeCount(gainOrLoss){
+    if (gainOrLoss === 'true'){
+      playerStats.lifecounter++;
+    }else if(gainOrLoss === 'false'){
+      playerStats.lifecounter--;
+    }
+    const lifecount = document.getElementById('lifecounter');
+    lifecount.innerHTML = playerStats.lifecounter;
+  }
+  lifeCount('false');
+// counter of coin
+  function currencyCount(amount){
+    playerStats.currency = playerStats.currency + amount;
+    console.log(amount);
+    console.log(playerStats.currency);
+    const currencyCounter = document.getElementById('currencycounter');
+    currencyCounter.innerHTML = playerStats.currency;
+  }
+  currencyCount(500);
+  currencyCount(1000);
   //player Entity creator
   function createPlayer(location){
 
@@ -101,13 +122,13 @@ player.turnCounter++
     [b,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,b],
     [b,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,b],
     [b,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,b],
-    [b,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,b],
-    [b,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,b],
-    [w,w,w,w,w,w,w,g,g,g,g,g,g,g,g,g,g,g,g,b],
-    [b,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,b],
-    [b,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,b],
-    [b,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,b],
-    [b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b]
+    [b,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,w,g,b],
+    [b,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,w,g,b],
+    [b,b,b,b,g,g,g,g,g,g,g,g,g,g,g,g,g,w,g,b],
+    [b,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,w,g,b],
+    [b,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,w,g,b],
+    [b,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,w,g,b],
+    [b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,w,b,b]
   ];
 
   // keypress handler
@@ -136,7 +157,7 @@ player.turnCounter++
     player.setAttribute('lastxpos',playPos[0]);
     player.setAttribute('lastypos',playPos[1]);
     box.appendChild(player);
-
+    stepCount();
   }
 
   document.addEventListener('keyup',(e) => {
@@ -192,7 +213,7 @@ player.turnCounter++
   createPlayer([2,2]);
   createItem('h',[10,10]);
   createItem('g',[11,11]);
-  splash();
+  //splash();
 
 
   //find position of player
@@ -300,7 +321,9 @@ player.turnCounter++
     const contain = document.getElementById('container');
     contain.appendChild(splash);
   }
+function controlPanel(){
 
+}
 
 
 
