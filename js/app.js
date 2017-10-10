@@ -1,8 +1,8 @@
 document.addEventListener('DOMContentLoaded', ()=> {
   console.log('up and running');
 
-// keeping track of info
-const playerStats = {};
+  // keeping track of info
+  const playerStats = {};
   playerStats.lifecounter = '3';
   playerStats.currency = 0;
   playerStats.currencyTotal = 0;
@@ -23,16 +23,24 @@ const playerStats = {};
   }
   //counter of lives
   function lifeCount(gainOrLoss){
+    const lifecount = document.getElementById('lifecounter');
+
     if (gainOrLoss === 'true'){
       playerStats.lifecounter++;
     }else if(gainOrLoss === 'false'){
       playerStats.lifecounter--;
     }
-    const lifecount = document.getElementById('lifecounter');
-    lifecount.innerHTML = playerStats.lifecounter;
-  }
+    if(playerStats.lifecounter < 0){
+      lifecount.innerHTML = playerStats.lifecounter;
+      resetGame();
+    }else{
+
+      lifecount.innerHTML = playerStats.lifecounter;
+    }
+
+}
   lifeCount('false');
-// counter of coin
+  // counter of coin
   function currencyCount(amount){
     playerStats.currency = playerStats.currency + amount;
     console.log(amount);
@@ -47,13 +55,15 @@ const playerStats = {};
     playerStats.currencyTotal = playerStats.currencyTotal - playerStats.currency;
     playerStats.currency = 0;
     playerStats.turnCounter = 0;
+    document.getElementById('player').outerHTML='';
+    createPlayer(playerStats.playerStart);
   }
   function resetGame(){
     playerStats.currencyTotal = 0;
     playerStats.currency = 0;
     playerStats.turnCounter = 0;
     startSplash();
-}
+  }
 
   //player Entity creator
   function createPlayer(location){
@@ -214,7 +224,7 @@ const playerStats = {};
             box.setAttribute('state','true');
             break;
           case 'w': box.style.backgroundPosition = '-32px -64px'; //bad lava
-            box.setAttribute('state','true');
+            box.setAttribute('state','deadlylava');
         }
         box.style.float ='left';
         main.appendChild(box);
@@ -228,7 +238,7 @@ const playerStats = {};
   createPlayer(playerStats.playerStart);
   createItem('h',[10,10]);
   createItem('g',[11,11]);
-  levelSplash();
+
 
 
   //find position of player
@@ -255,6 +265,12 @@ const playerStats = {};
       console.log('border');
     }else if(stater === 'true'){
       console.log('blocked move');
+    }else if(stater === 'deadlylava'){
+      const boxId= 'box_' + xaxis + '_' + yaxis;
+      const moveLoc = [String(xaxis),String(yaxis)];
+      move(moveLoc,playPos,boxId);
+      death();
+
     }else{
       const boxId= 'box_' + xaxis + '_' + yaxis;
       const moveLoc = [String(xaxis),String(yaxis)];
@@ -320,7 +336,7 @@ const playerStats = {};
       move(moveLoc,playPos,boxId);
     }
   }
-//square splash screen for wins and losses.
+  //square splash screen for wins and losses.
   function splash(){
     const splash = document.createElement('div');
     splash.getAttribute('class','splashy');
@@ -341,7 +357,8 @@ const playerStats = {};
   }
   function startSplash(){
     const splash = document.createElement('div');
-    splash.getAttribute('class','splashy');      splash.getAttribute('id','startsplash');
+    splash.getAttribute('class','splashy');
+    splash.getAttribute('id','startsplash');
     splash.style.position = 'relative';
     splash.style.width = '458px';
     splash.style.height = '458px';
@@ -365,5 +382,10 @@ const playerStats = {};
     const contain = document.getElementById('container');
     contain.appendChild(splash);
   }
+  function death(){
+    resetLevel();
+    lifeCount('false');
+  }
+
 
 });
