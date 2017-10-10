@@ -5,6 +5,7 @@ document.addEventListener('DOMContentLoaded', ()=> {
 const playerStats = {};
   playerStats.lifecounter = '3';
   playerStats.currency = 0;
+  playerStats.currencyTotal = 0;
   playerStats.levelAch = '1';
   playerStats.playerBlueKey = 'false';
   playerStats.playerGreenKey = 'false';
@@ -40,6 +41,16 @@ const playerStats = {};
   }
   currencyCount(500);
   currencyCount(1000);
+
+  function resetLevel(){
+    playerStats.currencyTotal = playerStats.currencyTotal - playerStats.currency;
+    playerStats.currency = 0;
+    playerStats.turnCounter = 0;
+
+
+  }
+
+
   //player Entity creator
   function createPlayer(location){
 
@@ -196,7 +207,7 @@ const playerStats = {};
             box.setAttribute('state','false');
             break;
           case 'b': box.style.backgroundPosition = '-64px 0px'; // bluewall
-            box.setAttribute('state','true  ');
+            box.setAttribute('state','true');
             break;
           case 'w': box.style.backgroundPosition = '-32px -64px'; //bad lava
             box.setAttribute('state','true');
