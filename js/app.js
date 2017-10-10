@@ -12,6 +12,7 @@ const playerStats = {};
   playerStats.playerYellowKey = 'false';
   playerStats.playerRedKey = 'false';
   playerStats.turnCounter = 0;
+  playerStats.playerStart = [2,2];
   console.log(playerStats);
 
   //counter of steps
@@ -46,10 +47,13 @@ const playerStats = {};
     playerStats.currencyTotal = playerStats.currencyTotal - playerStats.currency;
     playerStats.currency = 0;
     playerStats.turnCounter = 0;
-
-
   }
-
+  function resetGame(){
+    playerStats.currencyTotal = 0;
+    playerStats.currency = 0;
+    playerStats.turnCounter = 0;
+    startSplash();
+}
 
   //player Entity creator
   function createPlayer(location){
@@ -221,10 +225,10 @@ const playerStats = {};
   }
 
   gameboard();
-  createPlayer([2,2]);
+  createPlayer(playerStats.playerStart);
   createItem('h',[10,10]);
   createItem('g',[11,11]);
-  //splash();
+  levelSplash();
 
 
   //find position of player
@@ -327,16 +331,39 @@ const playerStats = {};
     splash.style.margin = '90px';
     splash.style.border = '2px solid black';
     splash.style.zIndex = '5';
-    splash.style.backgroundColor ='grey'
+    splash.style.backgroundColor ='grey';
 
     const contain = document.getElementById('container');
     contain.appendChild(splash);
   }
-function controlPanel(){
+  function controlPanel(){
 
-}
-
-
-
+  }
+  function startSplash(){
+    const splash = document.createElement('div');
+    splash.getAttribute('class','splashy');      splash.getAttribute('id','startsplash');
+    splash.style.position = 'relative';
+    splash.style.width = '458px';
+    splash.style.height = '458px';
+    splash.style.margin = '90px';
+    splash.style.border = '2px solid black';
+    splash.style.zIndex = '5';
+    splash.style.backgroundColor ='red';
+    const contain = document.getElementById('container');
+    contain.appendChild(splash);
+  }
+  function levelSplash(){
+    const splash = document.createElement('div');
+    splash.getAttribute('class','splashy');      splash.getAttribute('id','levelsplash');
+    splash.style.position = 'relative';
+    splash.style.width = '458px';
+    splash.style.height = '458px';
+    splash.style.margin = '90px';
+    splash.style.border = '2px solid black';
+    splash.style.zIndex = '5';
+    splash.style.backgroundColor ='white';
+    const contain = document.getElementById('container');
+    contain.appendChild(splash);
+  }
 
 });
