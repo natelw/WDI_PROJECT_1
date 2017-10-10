@@ -55,13 +55,20 @@ document.addEventListener('DOMContentLoaded', ()=> {
     playerStats.currencyTotal = playerStats.currencyTotal - playerStats.currency;
     playerStats.currency = 0;
     playerStats.turnCounter = 0;
+
+    const stepBoard = document.getElementById('stepcount');
+    stepBoard.innerHTML = playerStats.turnCounter;
+    const currencyCounter = document.getElementById('currencycounter');
+    currencyCounter.innerHTML = playerStats.currency;
     document.getElementById('player').outerHTML='';
     createPlayer(playerStats.playerStart);
+    console.log(playerStats);
   }
   function resetGame(){
     playerStats.currencyTotal = 0;
     playerStats.currency = 0;
     playerStats.turnCounter = 0;
+    document.getElementById('player').outerHTML='';
     startSplash();
   }
 
@@ -291,6 +298,12 @@ document.addEventListener('DOMContentLoaded', ()=> {
       console.log('border');
     }else if(stater === 'true'){
       console.log('blocked move');
+    }else if(stater === 'deadlylava'){
+      const boxId= 'box_' + xaxis + '_' + yaxis;
+      const moveLoc = [String(xaxis),String(yaxis)];
+      move(moveLoc,playPos,boxId);
+      death();
+
     }else{
 
       const boxId= 'box_' + xaxis + '_' + yaxis;
@@ -311,6 +324,12 @@ document.addEventListener('DOMContentLoaded', ()=> {
       console.log('border');
     }else if(stater === 'true'){
       console.log('blocked move');
+    }else if(stater === 'deadlylava'){
+      const boxId= 'box_' + xaxis + '_' + yaxis;
+      const moveLoc = [String(xaxis),String(yaxis)];
+      move(moveLoc,playPos,boxId);
+      death();
+
     }else{
       const boxId= 'box_' + xaxis + '_' + yaxis;
       const moveLoc = [String(xaxis),String(yaxis)];
@@ -330,6 +349,12 @@ document.addEventListener('DOMContentLoaded', ()=> {
       console.log('border');
     }else if(stater === 'true'){
       console.log('blocked move');
+    }else if(stater === 'deadlylava'){
+      const boxId= 'box_' + xaxis + '_' + yaxis;
+      const moveLoc = [String(xaxis),String(yaxis)];
+      move(moveLoc,playPos,boxId);
+      death();
+
     }else{
       const boxId= 'box_' + xaxis + '_' + yaxis;
       const moveLoc = [String(xaxis),String(yaxis)];
