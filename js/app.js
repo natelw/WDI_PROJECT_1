@@ -224,14 +224,16 @@ document.addEventListener('DOMContentLoaded', ()=> {
         box.style.backgroundImage = 'url(images/truetiles.png)';
 
         switch (map[i][j]){
-          case 'g': box.style.backgroundPosition = '-32px -32px'; // chipfloor
+          case 'g': box.style.backgroundPosition = '0px -160px'; // chipfloor
             box.setAttribute('state','false');
+            box.setAttribute('class','redpulse');
             break;
-          case 'b': box.style.backgroundPosition = '-64px 0px'; // bluewall
+          case 'b': box.style.backgroundPosition = '-128px 0px'; // bluewall
             box.setAttribute('state','true');
             break;
           case 'w': box.style.backgroundPosition = '-32px -64px'; //bad lava
             box.setAttribute('state','deadlylava');
+            box.setAttribute('class','endsec');
         }
         box.style.float ='left';
         main.appendChild(box);
@@ -393,6 +395,7 @@ document.addEventListener('DOMContentLoaded', ()=> {
     splash.style.backgroundColor ='red';
     const contain = document.getElementById('container');
     contain.appendChild(splash);
+    goButton();
   }
   function levelSplash(){
     const splash = document.createElement('div');
@@ -407,10 +410,21 @@ document.addEventListener('DOMContentLoaded', ()=> {
     const contain = document.getElementById('container');
     contain.appendChild(splash);
   }
+
   function death(){
     resetLevel();
     lifeCount('false');
   }
 
+  function goButton(){
+    const gobutt =  document.createElement('div');
+    const levelsplash = document.getElementById('levelsplash');
+    gobutt.style.width = '300px';
+    gobutt.style.height = '300px';
+    gobutt.style.margin = '90px';
+    gobutt.style.border = '2px solid black';
+    levelsplash.appendChild(gobutt);
+
+  }
 
 });

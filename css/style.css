@@ -62,8 +62,35 @@ font-family: 'Bungee Hairline', cursive;
   text-stroke
 }
 
-  
 
+.redpulse {
+width: 32px;
+    height: 32px;
+    background-image: url("images/truetiles.png");
+
+
+            animation: redpulse 2s steps(6) infinite;
+}
+
+
+@keyframes redpulse {
+   from { background-position:    0px -160px; }
+     to { background-position: -192px -160px; }
+}
+.endsec {
+width: 32px;
+    height: 32px;
+    background-image: url("images/truetiles.png");
+
+
+            animation: endsec 1s steps(7) infinite;
+}
+
+
+@keyframes endsec {
+   from { background-position:    0px -96px; }
+     to { background-position: -224px -96px; }
+}
 
 .heart {
 width: 32px;
