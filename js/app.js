@@ -76,12 +76,13 @@ document.addEventListener('DOMContentLoaded', ()=> {
   function createPlayer(location){
 
     const playerBox = document.createElement('div');
-    playerBox.style.width = '16px';
+    playerBox.style.width = '32px';
     playerBox.style.height= '32px';
-    playerBox.style.margin = '0px 8px';
-    playerBox.style.backgroundImage = 'url(images/humanss.gif)';
-    playerBox.style.backgroundPosition = '-19px -19px'; //face front basic
+    //playerBox.style.margin = '0px 8px';
+    playerBox.style.backgroundImage = 'url(images/truetiles.png)';
+    //playerBox.style.backgroundPosition = '-19px -19px'; //face front basic
     playerBox.setAttribute('id','player');
+    playerBox.setAttribute('class','player');
     playerBox.setAttribute('state','player');
     playerBox.setAttribute('xpos',location[0]);
     playerBox.setAttribute('ypos',location[1]);
@@ -224,14 +225,20 @@ document.addEventListener('DOMContentLoaded', ()=> {
         box.style.backgroundImage = 'url(images/truetiles.png)';
 
         switch (map[i][j]){
-          case 'g': box.style.backgroundPosition = '0px -160px'; // chipfloor
+          case 'g': box.style.backgroundPosition = '0px -160px'; // animated redpulse grey power square
             box.setAttribute('state','false');
             box.setAttribute('class','redpulse');
             break;
-          case 'b': box.style.backgroundPosition = '-128px 0px'; // bluewall
+
+          case 'b': box.style.backgroundPosition = '0px -128px'; // bluewall standard straight
             box.setAttribute('state','true');
             break;
-          case 'w': box.style.backgroundPosition = '-32px -64px'; //bad lava
+
+          case '.': box.style.backgroundPosition = '0px -128px'; // bluewall standard straight
+            box.setAttribute('state','true');
+            break;
+
+          case 'w': box.style.backgroundPosition = '-32px -64px'; //animated end of red exit down
             box.setAttribute('state','deadlylava');
             box.setAttribute('class','endsec');
         }
