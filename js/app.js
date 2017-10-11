@@ -171,13 +171,13 @@ document.addEventListener('DOMContentLoaded', ()=> {
   const main = document.getElementById('container');
   document.addEventListener('keydown',(e) =>{     //change to jquery
     switch(e.keyCode){
-      case 37: pressLeft();
+      case 37: movePress('left');
         break;
-      case 38: pressUp();
+      case 38: movePress('up');
         break;
-      case 39: pressRight();
+      case 39: movePress('right');
         break;
-      case 40: pressDown();
+      case 40: movePress('down');
         break;
       case 32: pressedSpace = true;
         break;
@@ -270,19 +270,32 @@ document.addEventListener('DOMContentLoaded', ()=> {
   }
 
   //basic keyboard controls (needs refactoring)
-  function pressDown(){
+  function movePress(direction){
     const playPos = getPosition();
     let xaxis = playPos[0];
-    const yaxis = playPos[1];
-
-    xaxis++;
+    let yaxis = playPos[1];
+    switch (direction){
+      case 'down':{
+        xaxis++;
+        break;
+      }
+      case 'up':{
+        xaxis--;
+        break;
+      }
+      case 'left':{
+        yaxis--;
+        break;
+      }
+      case 'right':{
+        yaxis++;
+        break;
+      }
+    }
     const boxId= 'box_' + xaxis + '_' + yaxis;
-
+    const moveLoc = [String(xaxis),String(yaxis)];
     const  moveToBox = document.getElementById(boxId);
-
     const stater = moveToBox.getAttribute('state');
-    const itemType = moveToBox.getAttribute('itemType');
-    console.log(itemType);
     if (xaxis > 18){
       console.log('border');
     }else if(stater === 'true'){
@@ -296,19 +309,18 @@ document.addEventListener('DOMContentLoaded', ()=> {
       const itemType = moveToBox.firstElementChild.getAttribute('itemType');
       switch (itemType){
         case 'heart':{
-          lifeCount('true');
+          heartCollect();
           moveToBox.firstElementChild.outerHTML = '';
-          const moveLoc = [String(xaxis),String(yaxis)];
           move(moveLoc,playPos,boxId);
           break;
         }
-        case 'blueGem':{
-          console.log('blueGem');
+        case 'bluegem':{
+          blueGemCollect();
+          moveToBox.firstElementChild.outerHTML = '';
+          move(moveLoc,playPos,boxId);
           break;
         }
       }
-
-
     }else{
       const boxId= 'box_' + xaxis + '_' + yaxis;
       const moveLoc = [String(xaxis),String(yaxis)];
@@ -316,83 +328,14 @@ document.addEventListener('DOMContentLoaded', ()=> {
 
     }
   }
-
-
-  function pressUp(){
-    const playPos = getPosition();
-    let xaxis = playPos[0];
-    const yaxis = playPos[1];
-    xaxis--;
-    const boxId= 'box_' + xaxis + '_' + yaxis;
-    const  moveToBox = document.getElementById(boxId);
-    const stater = moveToBox.getAttribute('state');
-    if (xaxis < 1){
-      console.log('border');
-    }else if(stater === 'true'){
-      console.log('blocked move');
-    }else if(stater === 'deadlylava'){
-      const boxId= 'box_' + xaxis + '_' + yaxis;
-      const moveLoc = [String(xaxis),String(yaxis)];
-      move(moveLoc,playPos,boxId);
-      death();
-
-    }else{
-
-      const boxId= 'box_' + xaxis + '_' + yaxis;
-      const moveLoc = [String(xaxis),String(yaxis)];
-      move(moveLoc,playPos,boxId);
-    }
+  function heartCollect(){
+    lifeCount('true');
   }
-  function pressLeft(){
-    const playPos = getPosition();
-    const xaxis = playPos[0];
-    let yaxis = playPos[1];
-    yaxis--;
-    const boxId= 'box_' + xaxis + '_' + yaxis;
-    const  moveToBox = document.getElementById(boxId);
-    const stater = moveToBox.getAttribute('state');
-
-    if (yaxis < 1){
-      console.log('border');
-    }else if(stater === 'true'){
-      console.log('blocked move');
-    }else if(stater === 'deadlylava'){
-      const boxId= 'box_' + xaxis + '_' + yaxis;
-      const moveLoc = [String(xaxis),String(yaxis)];
-      move(moveLoc,playPos,boxId);
-      death();
-
-    }else{
-      const boxId= 'box_' + xaxis + '_' + yaxis;
-      const moveLoc = [String(xaxis),String(yaxis)];
-      move(moveLoc,playPos,boxId);
-    }
+  function blueGemCollect(){
+    currencyCount(666);
   }
 
-  function pressRight(){
-    const playPos = getPosition();
-    const xaxis = playPos[0];
-    let yaxis = playPos[1];
-    yaxis++;
-    const boxId= 'box_' + xaxis + '_' + yaxis;
-    const  moveToBox = document.getElementById(boxId);
-    const stater = moveToBox.getAttribute('state');
-    if (yaxis > 18){
-      console.log('border');
-    }else if(stater === 'true'){
-      console.log('blocked move');
-    }else if(stater === 'deadlylava'){
-      const boxId= 'box_' + xaxis + '_' + yaxis;
-      const moveLoc = [String(xaxis),String(yaxis)];
-      move(moveLoc,playPos,boxId);
-      death();
 
-    }else{
-      const boxId= 'box_' + xaxis + '_' + yaxis;
-      const moveLoc = [String(xaxis),String(yaxis)];
-      move(moveLoc,playPos,boxId);
-    }
-  }
   //square splash screen for wins and losses.
   function splash(){
     const splash = document.createElement('div');
