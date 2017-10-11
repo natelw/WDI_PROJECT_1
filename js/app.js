@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', ()=> {
   playerStats.playerYellowKey = 'false';
   playerStats.playerRedKey = 'false';
   playerStats.turnCounter = 0;
-  playerStats.playerStart = [2,2];
+  playerStats.playerStart = [10,15];
   console.log(playerStats);
 
   //counter of steps
@@ -51,16 +51,22 @@ document.addEventListener('DOMContentLoaded', ()=> {
     currencyCounter.innerHTML = playerStats.currency;
   }
 
-  // toggglable deadly lava
+  // togglable deadly lava
   function hotToggle(turnNumber){
     const lavatriggroup = document.getElementsByClassName('togglehot');
+    console.log(lavatriggroup.getAttribute('hotness'));
     if (turnNumber % 3 === 0){
       if (lavatriggroup.getAttribute('hotness') === 'true') {
-        lavatriggroup.getAttribute('hotness','false');
-        console.log(lavatriggroup.hotness);
+
+        const lavatiles = document.getElementsByClassName('togglehot');
+        for (var i = 0; i < lavatiles.length; i++) {
+          lavatiles[i].getAttribute('hotness','false');
+        }
+        console.log('huh');
       } else {
-        if (lavatriggroup.getAttribute('hotness') === 'false') {
-          lavatriggroup.getAttribute('hotness','true');
+        const lavatiles = document.getElementsByClassName('togglehot');
+        for (var i = 0; i < lavatiles.length; i++) {
+        lavatiles[i].getAttribute('hotness','false');
 
         }
       }
@@ -68,17 +74,23 @@ document.addEventListener('DOMContentLoaded', ()=> {
   }
 
 
-// level reset
+  // level reset
   function resetLevel(){
+    console.log('reset?');
+    document.getElementById('player').outerHTML='';
+    console.log('deleted bug?');
+    console.log('new bugg?');
+    createPlayer(playerStats.playerStart);
     playerStats.currencyTotal = playerStats.currencyTotal - playerStats.currency;
     playerStats.currency = 0;
     playerStats.turnCounter = 0;
+
     const stepBoard = document.getElementById('stepcount');
     stepBoard.innerHTML = playerStats.turnCounter;
     const currencyCounter = document.getElementById('currencycounter');
     currencyCounter.innerHTML = playerStats.currency;
     document.getElementById('player').outerHTML='';
-    createPlayer(playerStats.playerStart);
+
     console.log(playerStats);
   }
   // game reset
@@ -104,11 +116,13 @@ document.addEventListener('DOMContentLoaded', ()=> {
     playerBox.setAttribute('ypos',location[1]);
     playerBox.setAttribute('lastxpos',location[0]);
     playerBox.setAttribute('lastypos',location[1]);
+    console.log(playerBox);
     playerBox.style.position ='relative';
     playerBox.style.top ='0px';
     playerBox.style.left ='0px';
     playerBox.style.zIndex ='2';
     const box = document.getElementById('box_'+location[0]+'_'+location[1]);
+    console.log(location[1]);
     box.appendChild(playerBox);
     //item entity creator
   }
@@ -340,12 +354,14 @@ document.addEventListener('DOMContentLoaded', ()=> {
     const moveLoc = [String(xaxis),String(yaxis)];
     const  moveToBox = document.getElementById(boxId);
     const stater = moveToBox.getAttribute('state');
+    console.log(stater);
     if (xaxis > 18){
       console.log('border');
     }else if(stater === 'true'){
       console.log('blocked move');
     }else if(stater === 'deadlylava'){
       const boxId= 'box_' + xaxis + '_' + yaxis;
+      death();
       const moveLoc = [String(xaxis),String(yaxis)];
       move(moveLoc,playPos,boxId);
       death();
