@@ -57,9 +57,11 @@ document.addEventListener('DOMContentLoaded', ()=> {
     if (turnNumber % 3 === 0){
       if (lavatriggroup.getAttribute('hotness') === 'true') {
         lavatriggroup.getAttribute('hotness','false');
+        console.log(lavatriggroup.hotness);
       } else {
         if (lavatriggroup.getAttribute('hotness') === 'false') {
           lavatriggroup.getAttribute('hotness','true');
+
         }
       }
     }
