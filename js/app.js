@@ -38,7 +38,7 @@ document.addEventListener('DOMContentLoaded', ()=> {
       lifecount.innerHTML = playerStats.lifecounter;
     }
 
-}
+  }
   lifeCount('false');
   // counter of coin
   function currencyCount(amount){
@@ -49,13 +49,12 @@ document.addEventListener('DOMContentLoaded', ()=> {
     currencyCounter.innerHTML = playerStats.currency;
   }
   currencyCount(500);
-  currencyCount(1000);
 
+// level reset
   function resetLevel(){
     playerStats.currencyTotal = playerStats.currencyTotal - playerStats.currency;
     playerStats.currency = 0;
     playerStats.turnCounter = 0;
-
     const stepBoard = document.getElementById('stepcount');
     stepBoard.innerHTML = playerStats.turnCounter;
     const currencyCounter = document.getElementById('currencycounter');
@@ -64,6 +63,7 @@ document.addEventListener('DOMContentLoaded', ()=> {
     createPlayer(playerStats.playerStart);
     console.log(playerStats);
   }
+  // game reset
   function resetGame(){
     playerStats.currencyTotal = 0;
     playerStats.currency = 0;
@@ -96,6 +96,7 @@ document.addEventListener('DOMContentLoaded', ()=> {
     box.appendChild(playerBox);
     //item entity creator
   }
+  // item creator
   function createItem(type,location){
     const itemBox = document.createElement('div');
     itemBox.style.width = '32px';
@@ -118,16 +119,18 @@ document.addEventListener('DOMContentLoaded', ()=> {
         itemBox.style.top ='0px';
         itemBox.style.left = '0px';
         itemBox.setAttribute('class','heart');
+        itemBox.setAttribute('itemType','heart');
         break;
       }
       case 'g':{
         itemBox.style.backgroundImage = 'url(images/itemsprite.png)';
 
-        itemBox.setAttribute('id','heart_'+location[0]+'_'+location[1]);
+        itemBox.setAttribute('id','bluegem_'+location[0]+'_'+location[1]);
         itemBox.style.position = 'relative';
         itemBox.style.top ='0px';
         itemBox.style.left = '0px';
         itemBox.setAttribute('class','bluegem');
+        itemBox.setAttribute('itemType','bluegem');
         break;
       }
     }
@@ -192,7 +195,7 @@ document.addEventListener('DOMContentLoaded', ()=> {
     box.appendChild(player);
     stepCount();
   }
-
+// key up key listener
   document.addEventListener('keyup',(e) => {
     switch(e.keyCode){
       case 37: pressedLeft = false;
@@ -274,9 +277,12 @@ document.addEventListener('DOMContentLoaded', ()=> {
 
     xaxis++;
     const boxId= 'box_' + xaxis + '_' + yaxis;
-    const  moveToBox = document.getElementById(boxId);
-    const stater = moveToBox.getAttribute('state');
 
+    const  moveToBox = document.getElementById(boxId);
+
+    const stater = moveToBox.getAttribute('state');
+    const itemType = moveToBox.getAttribute('itemType');
+    console.log(itemType);
     if (xaxis > 18){
       console.log('border');
     }else if(stater === 'true'){
@@ -286,6 +292,22 @@ document.addEventListener('DOMContentLoaded', ()=> {
       const moveLoc = [String(xaxis),String(yaxis)];
       move(moveLoc,playPos,boxId);
       death();
+    }else if (moveToBox.firstElementChild) {
+      const itemType = moveToBox.firstElementChild.getAttribute('itemType');
+      switch (itemType){
+        case 'heart':{
+          lifeCount('true');
+          moveToBox.firstElementChild.outerHTML = '';
+          const moveLoc = [String(xaxis),String(yaxis)];
+          move(moveLoc,playPos,boxId);
+          break;
+        }
+        case 'blueGem':{
+          console.log('blueGem');
+          break;
+        }
+      }
+
 
     }else{
       const boxId= 'box_' + xaxis + '_' + yaxis;
@@ -294,6 +316,7 @@ document.addEventListener('DOMContentLoaded', ()=> {
 
     }
   }
+
 
   function pressUp(){
     const playPos = getPosition();
