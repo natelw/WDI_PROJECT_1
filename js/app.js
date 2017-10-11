@@ -48,7 +48,6 @@ document.addEventListener('DOMContentLoaded', ()=> {
     const currencyCounter = document.getElementById('currencycounter');
     currencyCounter.innerHTML = playerStats.currency;
   }
-  currencyCount(500);
 
 // level reset
   function resetLevel(){
@@ -192,10 +191,25 @@ document.addEventListener('DOMContentLoaded', ()=> {
     player.setAttribute('ypos',movePos[1]);
     player.setAttribute('lastxpos',playPos[0]);
     player.setAttribute('lastypos',playPos[1]);
+    // direction checker
+    if (Number(movePos[0]) === Number(playPos[0])){
+      if (Number(movePos[1])-1 === Number(playPos[1])){
+        console.log('face right');
+      }else if (Number(movePos[1])+1 === Number(playPos[1])){
+        console.log('face left');
+      }
+    }else if (movePos[1] === playPos[1]){
+      if (Number(movePos[0])+1 === Number(playPos[0])){
+        console.log('face up');
+      }else if (Number(movePos[0])-1 === Number(playPos[0])){
+        console.log('face down');
+      }
+    }
+
     box.appendChild(player);
     stepCount();
   }
-// key up key listener
+  // key up key listener
   document.addEventListener('keyup',(e) => {
     switch(e.keyCode){
       case 37: pressedLeft = false;
@@ -269,7 +283,7 @@ document.addEventListener('DOMContentLoaded', ()=> {
 
   }
 
-  //basic keyboard controls (needs refactoring)
+  //basic keyboard controls
   function movePress(direction){
     const playPos = getPosition();
     let xaxis = playPos[0];

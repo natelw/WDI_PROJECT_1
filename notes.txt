@@ -21,6 +21,10 @@ advanced mazing - moving blocks, on/off panels, keys,zones,
 
 
 tiles on timers - 3on 3 off lava
-ability to pick up items
+ability to pick up items ——
+animation direction changes on move direction
 ability to leave a trail of liquid for so many squares
 ability to link up two points
+
+
+bug directions on move change the picture the bug is represented by to another position
