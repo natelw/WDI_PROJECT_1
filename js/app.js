@@ -20,6 +20,7 @@ document.addEventListener('DOMContentLoaded', ()=> {
     playerStats.turnCounter++;
     const stepBoard = document.getElementById('stepcount');
     stepBoard.innerHTML = playerStats.turnCounter;
+    hotToggle(playerStats.turnCounter);
   }
   //counter of lives
   function lifeCount(gainOrLoss){
@@ -40,6 +41,7 @@ document.addEventListener('DOMContentLoaded', ()=> {
 
   }
   lifeCount('false');
+
   // counter of coin
   function currencyCount(amount){
     playerStats.currency = playerStats.currency + amount;
@@ -48,6 +50,21 @@ document.addEventListener('DOMContentLoaded', ()=> {
     const currencyCounter = document.getElementById('currencycounter');
     currencyCounter.innerHTML = playerStats.currency;
   }
+
+  // toggglable deadly lava
+  function hotToggle(turnNumber){
+    const lavatriggroup = document.getElementsByClassName('togglehot');
+    if (turnNumber % 3 === 0){
+      if (lavatriggroup.getAttribute('hotness') === 'true') {
+        lavatriggroup.getAttribute('hotness','false');
+      } else {
+        if (lavatriggroup.getAttribute('hotness') === 'false') {
+          lavatriggroup.getAttribute('hotness','true');
+        }
+      }
+    }
+  }
+
 
 // level reset
   function resetLevel(){
@@ -77,9 +94,7 @@ document.addEventListener('DOMContentLoaded', ()=> {
     const playerBox = document.createElement('div');
     playerBox.style.width = '32px';
     playerBox.style.height= '32px';
-    //playerBox.style.margin = '0px 8px';
     playerBox.style.backgroundImage = 'url(images/truetiles.png)';
-    //playerBox.style.backgroundPosition = '-19px -19px'; //face front basic
     playerBox.setAttribute('id','player');
     playerBox.setAttribute('class','player');
     playerBox.setAttribute('state','player');
@@ -130,6 +145,18 @@ document.addEventListener('DOMContentLoaded', ()=> {
         itemBox.style.left = '0px';
         itemBox.setAttribute('class','bluegem');
         itemBox.setAttribute('itemType','bluegem');
+        break;
+      }
+      case 't':{
+        itemBox.style.backgroundImage = 'url(images/itemsprite.png)';
+
+        itemBox.setAttribute('id','togglehot_'+location[0]+'_'+location[1]);
+        itemBox.style.position = 'relative';
+        itemBox.style.top ='0px';
+        itemBox.style.left = '0px';
+        itemBox.setAttribute('class','togglehot');
+        itemBox.setAttribute('itemType','togglehot');
+        itemBox.setAttribute('hotness','true');
         break;
       }
     }
@@ -191,6 +218,7 @@ document.addEventListener('DOMContentLoaded', ()=> {
     player.setAttribute('ypos',movePos[1]);
     player.setAttribute('lastxpos',playPos[0]);
     player.setAttribute('lastypos',playPos[1]);
+
     // direction checker
     if (Number(movePos[0]) === Number(playPos[0])){
       if (Number(movePos[1])-1 === Number(playPos[1])){
@@ -283,7 +311,7 @@ document.addEventListener('DOMContentLoaded', ()=> {
 
   }
 
-  //basic keyboard controls
+  //keyboard controls
   function movePress(direction){
     const playPos = getPosition();
     let xaxis = playPos[0];

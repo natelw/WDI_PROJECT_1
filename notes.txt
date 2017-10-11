@@ -20,9 +20,9 @@ Tuesday - create menus, reset button, go button, lives, object for player info
 advanced mazing - moving blocks, on/off panels, keys,zones,
 
 
-tiles on timers - 3on 3 off lava
+tiles on timers - 3on 3 off lava — 
 ability to pick up items ——
-animation direction changes on move direction
+animation direction changes on move direction —— mostly
 ability to leave a trail of liquid for so many squares
 ability to link up two points
 
