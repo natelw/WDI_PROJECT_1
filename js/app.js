@@ -32,9 +32,11 @@ document.addEventListener('DOMContentLoaded', ()=> {
       for (var i = 0; i < toghot.length; i++) {
         if (toghot[i].getAttribute('state') === 'deadlylava'){
           toghot[i].setAttribute('state','false');
+          toghot[i].style.backgroundPosition = '0px 0px';
           console.log(toghot);
         }else{
           toghot[i].setAttribute('state','deadlylava');
+          toghot[i].style.backgroundPosition = '-32px -32px';
         }
       }
     }
