@@ -191,8 +191,8 @@ width: 32px;
 
 
 @keyframes playerleft {
-   from { background-position:    0px -192px; }
-     to { background-position: -128px -192px; }
+   from { background-position:    0px -256px; }
+     to { background-position: -128px -256px; }
 }
 
 .playerright {

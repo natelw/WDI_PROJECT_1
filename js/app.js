@@ -196,14 +196,20 @@ document.addEventListener('DOMContentLoaded', ()=> {
     if (Number(movePos[0]) === Number(playPos[0])){
       if (Number(movePos[1])-1 === Number(playPos[1])){
         console.log('face right');
+        player.setAttribute('class','player');
       }else if (Number(movePos[1])+1 === Number(playPos[1])){
         console.log('face left');
+        player.setAttribute('class','playerleft');
+
       }
     }else if (movePos[1] === playPos[1]){
       if (Number(movePos[0])+1 === Number(playPos[0])){
         console.log('face up');
+        player.setAttribute('class','playerup');
+
       }else if (Number(movePos[0])-1 === Number(playPos[0])){
         console.log('face down');
+        player.setAttribute('class','playerdown');
       }
     }
 
@@ -382,7 +388,7 @@ document.addEventListener('DOMContentLoaded', ()=> {
     splash.style.backgroundColor ='red';
     const contain = document.getElementById('container');
     contain.appendChild(splash);
-    
+
 
   }
   function levelSplash(){
