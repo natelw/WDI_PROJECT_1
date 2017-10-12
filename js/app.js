@@ -512,6 +512,9 @@ document.addEventListener('DOMContentLoaded', ()=> {
     }
   }
   function heartCollect(){
+
+    const audioheart = new Audio('sounds/heartup.wav');
+    audioheart.play();
     lifeCount('true');
   }
   function blueGemCollect(){
@@ -523,6 +526,9 @@ document.addEventListener('DOMContentLoaded', ()=> {
 
 
   function levelCompleteSplash(){
+
+    const audiocomplete = new Audio('sounds/gamewin.mp3');
+    audiocomplete.play();
     const splash = document.createElement('div');
     splash.getAttribute('class','splashy');
     splash.getAttribute('id','levelcompletesplash');
@@ -536,6 +542,8 @@ document.addEventListener('DOMContentLoaded', ()=> {
     const contain = document.getElementById('container');
     contain.appendChild(splash);
     splash.addEventListener('click',()=>{
+      const audiobutton = new Audio('sounds/buttonpressed.mp3');
+      audiobutton.play();
       console.log('next level');
       document.getElementById('container').textContent = '';
       gameLoader('1');
@@ -559,6 +567,8 @@ document.addEventListener('DOMContentLoaded', ()=> {
     contain.appendChild(splash);
     splash.addEventListener('click',()=>{
       console.log('lets go!');
+      const audiopressed = new Audio('sounds/buttonpressed.mp3');
+      audiopressed.play();
       location.reload();
     });
 
@@ -578,13 +588,15 @@ document.addEventListener('DOMContentLoaded', ()=> {
     contain.appendChild(splash);
     splash.addEventListener('click',()=>{
       console.log('lets go!');
+      const audiopress = new Audio('sounds/buttonpressed.mp3');
+      audiopress.play();
       splash.style.display = 'none';
     });
 
   }
 
   function death(){
-    const audiodeath = new Audio('sounds/deadbug.wav');
+    const audiodeath = new Audio('sounds/deathbug.wav');
     audiodeath.play();
     resetLevel();
     lifeCount('false');
