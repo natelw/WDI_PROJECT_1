@@ -32,11 +32,11 @@ document.addEventListener('DOMContentLoaded', ()=> {
       for (var i = 0; i < toghot.length; i++) {
         if (toghot[i].getAttribute('state') === 'deadlylava'){
           toghot[i].setAttribute('state','false');
-          toghot[i].style.backgroundPosition = '0px 0px';
+          toghot[i].style.backgroundPosition = '-64px -32px';
           console.log(toghot);
         }else{
           toghot[i].setAttribute('state','deadlylava');
-          toghot[i].style.backgroundPosition = '-32px -32px';
+          toghot[i].style.backgroundPosition = '-64px -64px';
         }
       }
     }
@@ -162,12 +162,14 @@ document.addEventListener('DOMContentLoaded', ()=> {
   const b = 'b';
   const g = 'g';
   const w = 'w';
+  const x = 'x';
+  const f = 'f';
 
   const map = [ // level map
     [b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b],
     [b,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,b],
     [b,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,b],
-    [b,g,b,b,b,b,b,g,g,g,g,'f',g,g,'f',g,g,g,g,b],
+    [b,g,b,b,b,b,b,g,g,g,g,f,g,g,f,g,g,g,g,b],
     [b,g,b,g,g,g,b,g,g,g,g,g,g,g,g,g,g,g,g,b],
     [b,g,b,g,g,g,b,g,g,g,g,g,g,g,g,g,g,g,g,b],
     [b,g,b,b,g,b,b,g,g,g,g,g,g,g,g,g,g,g,g,b],
@@ -181,7 +183,7 @@ document.addEventListener('DOMContentLoaded', ()=> {
     [b,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,w,g,b],
     [b,b,b,b,g,g,g,g,g,g,g,g,g,g,g,g,g,w,g,b],
     [b,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,w,g,b],
-    [b,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,w,g,b],
+    [b,g,g,g,g,g,g,g,x,g,g,g,g,g,g,g,g,w,g,b],
     [b,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,w,g,b],
     [b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,w,b,b]
   ];
@@ -273,9 +275,14 @@ document.addEventListener('DOMContentLoaded', ()=> {
             box.setAttribute('class','endsec');
             break;
 
-          case 'f': box.style.backgroundPosition = '-64px -32px'; //animated end of red exit down
+          case 'f': box.style.backgroundPosition = '-64px -32px'; //toggled hotsquare
             box.setAttribute('state','deadlylava');
             box.setAttribute('class','toghot');
+            break;
+
+          case 'x': box.style.backgroundPosition = '-0px -64px'; //endsquare
+            box.setAttribute('state','ending');
+            box.setAttribute('class','ending');
             break;
         }
         box.style.float ='left';
@@ -345,6 +352,10 @@ document.addEventListener('DOMContentLoaded', ()=> {
       console.log('border');
     }else if(stater === 'true'){
       console.log('blocked move');
+    }else if(stater === 'ending'){
+      console.log('you win!');
+      move(moveLoc,playPos,boxId);
+//          resetLevel();
     }else if(stater === 'deadlylava'){
       const boxId= 'box_' + xaxis + '_' + yaxis;
       const moveLoc = [String(xaxis),String(yaxis)];
@@ -413,7 +424,10 @@ document.addEventListener('DOMContentLoaded', ()=> {
     splash.style.backgroundColor ='red';
     const contain = document.getElementById('container');
     contain.appendChild(splash);
-
+    splash.addEventListener('click',()=>{
+      console.log('lets go!');
+      location.reload();
+    });
 
   }
   function levelSplash(){
