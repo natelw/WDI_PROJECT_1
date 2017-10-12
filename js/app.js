@@ -80,6 +80,9 @@ document.addEventListener('DOMContentLoaded', ()=> {
     currencyCounter.innerHTML = playerStats.currency;
     document.getElementById('player').outerHTML='';
     createPlayer(playerStats.playerStart);
+
+
+
     console.log(playerStats);
   }
   // game reset
@@ -316,6 +319,10 @@ document.addEventListener('DOMContentLoaded', ()=> {
             box.setAttribute('state','deadlylava');
             break;
 
+          case 'v': box.style.backgroundPosition = '-32px -32px'; //toggled hotsquare
+            box.setAttribute('state','deadlylava');
+            break;
+
           case 'rtp': box.style.backgroundPosition = '-128px -64px'; //red top 3way
             box.setAttribute('state','deadlylava');
             break;
@@ -341,20 +348,28 @@ document.addEventListener('DOMContentLoaded', ()=> {
     switch (level){
       case '1':
         gameboard();
+        newGameSplash();
         createPlayer(playerStats.playerStart);
-        createItem('h',[10,10]);
-        createItem('g',[11,11]);
-        createItem('h',[12,12]);
-        createItem('g',[1,11]);
-        createItem('g',[11,1]);
-        createItem('g',[13,12]);
-        createItem('g',[7,9]);
-
+        createStuff();
     }
 
   }
 
   gameLoader('1');
+
+  function createStuff(){
+
+    createItem('h',[10,10]);
+    createItem('g',[11,11]);
+    createItem('h',[12,12]);
+    createItem('g',[1,11]);
+    createItem('g',[11,1])
+    createItem('g',[13,12]);
+    createItem('g',[7,9]);
+  }
+
+
+
 
   //find position of player
   function getPosition(){
@@ -397,7 +412,7 @@ document.addEventListener('DOMContentLoaded', ()=> {
     }else if(stater === 'true'){
       console.log('blocked move');
     }else if(stater === 'ending'){
-      console.log('you win!');
+      levelCompleteSplash();
       move(moveLoc,playPos,boxId);
 //          resetLevel();
     }else if(stater === 'deadlylava'){
@@ -436,25 +451,27 @@ document.addEventListener('DOMContentLoaded', ()=> {
   }
 
 
-  //square splash screen for wins and losses.
-  function splash(){
+
+  function levelCompleteSplash(){
     const splash = document.createElement('div');
     splash.getAttribute('class','splashy');
-    splash.getAttribute('id','splash');
+    splash.getAttribute('id','levelcompletesplash');
     splash.style.position = 'relative';
     splash.style.width = '458px';
     splash.style.height = '458px';
     splash.style.margin = '90px';
     splash.style.border = '2px solid black';
     splash.style.zIndex = '5';
-    splash.style.backgroundColor ='grey';
-
+    splash.style.backgroundColor ='white';
     const contain = document.getElementById('container');
     contain.appendChild(splash);
-  }
-  function controlPanel(){
+    splash.addEventListener('click',()=>{
+      console.log('next level');
+    });
 
   }
+
+
   function startSplash(){
     const splash = document.createElement('div');
     splash.getAttribute('class','splashy');
@@ -474,18 +491,24 @@ document.addEventListener('DOMContentLoaded', ()=> {
     });
 
   }
-  function levelSplash(){
+  function newGameSplash(){
     const splash = document.createElement('div');
-    splash.getAttribute('class','splashy');      splash.getAttribute('id','levelsplash');
+    splash.getAttribute('class','splashy');
+    splash.getAttribute('id','levelsplash');
     splash.style.position = 'relative';
     splash.style.width = '458px';
     splash.style.height = '458px';
     splash.style.margin = '90px';
     splash.style.border = '2px solid black';
     splash.style.zIndex = '5';
-    splash.style.backgroundColor ='white';
+    splash.style.backgroundColor ='pink';
     const contain = document.getElementById('container');
     contain.appendChild(splash);
+    splash.addEventListener('click',()=>{
+      console.log('lets go!');
+      splash.style.display = 'none';
+    });
+
   }
 
   function death(){
@@ -493,18 +516,7 @@ document.addEventListener('DOMContentLoaded', ()=> {
     lifeCount('false');
   }
 
-  function goButton(){
-    const gobutt =  document.createElement('div');
-    gobutt.style.width = '300px';
-    gobutt.style.height = '300px';
-    gobutt.style.margin = '90px';
-    gobutt.style.border = '2px solid black';
-    gobutt.style.zIndex = '6';
-    gobutt.style.position = 'absolute';
-    gobutt.style.top = '50px';
-    const contain = document.getElementById('container');
-    contain.appendChild(gobutt);
 
-  }
+
 
 });
