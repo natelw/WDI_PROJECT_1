@@ -187,7 +187,7 @@ document.addEventListener('DOMContentLoaded', ()=> {
   const w = 'w';
 
   const map = [ // level map
-    [b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b],
+    ['cnw',b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b],
     [b,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,b],
     [b,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,b],
     [b,g,b,b,b,b,b,g,g,g,g,g,g,g,g,g,g,g,g,b],
@@ -292,6 +292,10 @@ document.addEventListener('DOMContentLoaded', ()=> {
             break;
 
           case 'b': box.style.backgroundPosition = '0px -128px'; // bluewall standard straight
+            box.setAttribute('state','true');
+            break;
+
+          case 'cnw': box.style.backgroundPosition = '0px -32px'; // blue corner NW
             box.setAttribute('state','true');
             break;
 

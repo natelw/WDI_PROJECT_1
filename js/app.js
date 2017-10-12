@@ -166,26 +166,26 @@ document.addEventListener('DOMContentLoaded', ()=> {
   const f = 'f';
 
   const map = [ // level map
-    [b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b],
-    [b,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,b],
-    [b,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,b],
-    [b,g,b,b,b,b,b,g,g,g,g,f,g,g,f,g,g,g,g,b],
-    [b,g,b,g,g,g,b,g,g,g,g,g,g,g,g,g,g,g,g,b],
-    [b,g,b,g,g,g,b,g,g,g,g,g,g,g,g,g,g,g,g,b],
-    [b,g,b,b,g,b,b,g,g,g,g,g,g,g,g,g,g,g,g,b],
-    [b,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,b],
-    [b,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,b],
-    [b,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,b],
-    [b,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,b],
-    [b,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,b],
-    [b,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,b],
-    [b,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,w,g,b],
-    [b,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,w,g,b],
-    [b,b,b,b,g,g,g,g,g,g,g,g,g,g,g,g,g,w,g,b],
-    [b,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,w,g,b],
-    [b,g,g,g,g,g,g,g,x,g,g,g,g,g,g,g,g,w,g,b],
-    [b,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,w,g,b],
-    [b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,w,b,b]
+    ['cnw',b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,'cne'],
+    ['lw',g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,'rw'],
+    ['lw',g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,'rw'],
+    ['lw',g,b,b,b,b,b,g,g,g,g,f,g,g,f,g,g,g,g,'rw'],
+    ['lw',g,b,g,g,g,b,g,g,g,g,g,g,g,g,g,g,g,g,'rw'],
+    ['lw',g,b,g,g,g,b,g,g,g,g,g,g,g,g,g,g,g,g,'rw'],
+    ['lw',g,b,b,g,b,b,g,g,g,g,g,g,g,g,g,g,g,g,'rw'],
+    ['lw',g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,'rw'],
+    ['lw',g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,'rw'],
+    ['lw',g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,'rw'],
+    ['lw',g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,'rw'],
+    ['lw',g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,'rw'],
+    ['lw',g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,'rw'],
+    ['lw',g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,w,g,'rw'],
+    ['lw',g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,w,g,'rw'],
+    ['lw',b,b,b,g,g,g,g,g,g,g,g,g,g,g,g,g,w,g,'rw'],
+    ['lw',g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,w,g,'rw'],
+    ['lw',g,g,g,g,g,g,g,x,g,g,g,g,g,g,g,g,w,g,'rw'],
+    ['lw',g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,w,g,'rw'],
+    ['csw','bw','bw','bw','bw','bw','bw','bw','bw','bw','bw','bw','bw','bw','bw','bw','bw','bw','bw','cse']
   ];
 
   // keypress handler
@@ -273,6 +273,34 @@ document.addEventListener('DOMContentLoaded', ()=> {
           case 'w': box.style.backgroundPosition = '-32px -64px'; //animated end of red exit down
             box.setAttribute('state','deadlylava');
             box.setAttribute('class','endsec');
+            break;
+
+          case 'cnw': box.style.backgroundPosition = '0px 0px'; // blue corner NW
+            box.setAttribute('state','true');
+            break;
+
+          case 'cne': box.style.backgroundPosition = '-32px 0px'; // blue corner NE
+            box.setAttribute('state','true');
+            break;
+
+          case 'cse': box.style.backgroundPosition = '-64px 0px'; // blue corner SE
+            box.setAttribute('state','true');
+            break;
+
+          case 'csw': box.style.backgroundPosition = '-96px 0px'; // blue corner SW
+            box.setAttribute('state','true');
+            break;
+
+          case 'rw': box.style.backgroundPosition = '-32px -128px'; // blue corner SW
+            box.setAttribute('state','true');
+            break;
+
+          case 'lw': box.style.backgroundPosition = '-64px -128px'; // blue corner SW
+            box.setAttribute('state','true');
+            break;
+
+          case 'bw': box.style.backgroundPosition = '-96px -128px'; // blue corner SW
+            box.setAttribute('state','true');
             break;
 
           case 'f': box.style.backgroundPosition = '-64px -32px'; //toggled hotsquare
