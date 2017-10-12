@@ -14,29 +14,64 @@ document.addEventListener('DOMContentLoaded', ()=> {
   playerStats.playerRedKey = 'false';
   playerStats.turnCounter = 0;
   playerStats.playerStart = [2,2];
-  console.log(playerStats);
-
+  let hotCounter = 0;
+  const toghot = document.getElementsByClassName('toghot');
   //counter of steps
   function stepCount(){
     playerStats.turnCounter++;
     const stepBoard = document.getElementById('stepcount');
     stepBoard.innerHTML = playerStats.turnCounter;
+
+
     lavatog();
   }
 
   function lavatog(){
-    if (playerStats.turnCounter % 3 === 0){
+    hotCounter++;
+    console.log(hotCounter);
+    if (hotCounter > 5){
+      hotCounter = 1;
       const toghot = document.getElementsByClassName('toghot');
-      console.log(toghot);
-      console.log(toghot.length);
-      for (var i = 0; i < toghot.length; i++) {
+    }
+    switch (hotCounter){
+
+      case 1:
+        for (let i = 0; i < toghot.length; i++) {
+          toghot[i].style.backgroundPosition = '-288px 0px';
+          console.log('toghot');
+        }
+        break;
+      case 2:for (let i = 0; i < toghot.length; i++) {
+        toghot[i].style.backgroundPosition = '-256px 0px';
+      }
+        break;
+      case 3:for (let i = 0; i < toghot.length; i++) {
+        toghot[i].style.backgroundPosition = '-224px 0px';
+      }
+        break;
+      case 4:for (let i = 0; i < toghot.length; i++) {
+        toghot[i].style.backgroundPosition = '-224px -32px';
+      }
+        break;
+      case 5:for (let i = 0; i < toghot.length; i++) {
+        toghot[i].style.backgroundPosition = '-256px -32px';
+      }
+        break;
+      case 6:for (var i = 0; i < toghot.length; i++) {
+        toghot[i].style.backgroundPosition = '-288px -32px';
+      }
+        break;
+    }
+
+    if (hotCounter === 4){
+      const toghot = document.getElementsByClassName('toghot');
+      for (let i = 0; i < toghot.length; i++) {
         if (toghot[i].getAttribute('state') === 'deadlylava'){
           toghot[i].setAttribute('state','false');
-          toghot[i].style.backgroundPosition = '-64px -32px';
-          console.log(toghot);
+          //toghot[i].style.backgroundPosition = '-64px -32px';
         }else{
           toghot[i].setAttribute('state','deadlylava');
-          toghot[i].style.backgroundPosition = '-64px -64px';
+        //  toghot[i].style.backgroundPosition = '-64px -64px';
         }
       }
     }
@@ -63,8 +98,6 @@ document.addEventListener('DOMContentLoaded', ()=> {
   // counter of coin
   function currencyCount(amount){
     playerStats.currency = playerStats.currency + amount;
-    console.log(amount);
-    console.log(playerStats.currency);
     const currencyCounter = document.getElementById('currencycounter');
     currencyCounter.innerHTML = playerStats.currency;
   }
@@ -83,7 +116,6 @@ document.addEventListener('DOMContentLoaded', ()=> {
 
 
 
-    console.log(playerStats);
   }
   // game reset
   function resetGame(){
@@ -191,6 +223,29 @@ document.addEventListener('DOMContentLoaded', ()=> {
     ['csw','bw','bw','bw','bw','bw','bw','bw','bw','bw','bw','bw','bw','bw','bw','bw','bw','bw','bw','cse']
   ];
 
+  const level2 = [ // level map
+    ['cnw',b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,'cne'],
+    ['lw','o','o','o','o','o','o','o','o',g,g,g,g,g,g,g,g,g,g,'rw'],
+    ['lw','o','o','o','o','o','o','o','o',g,g,g,g,g,g,g,g,g,g,'rw'],
+    ['lw','o','cnw',b,b,b,'cne',g,g,g,g,f,g,g,f,g,g,g,g,'rw'],
+    ['lw','o','lw',g,g,g,'rw',g,g,g,g,g,g,g,g,g,g,g,g,'rw'],
+    ['lw','o','lw',g,g,g,'rw',g,g,g,g,g,g,g,g,g,g,g,g,'rw'],
+    ['lw','o','csw','bw',g,'bw','cse',g,g,g,g,g,g,g,g,g,g,g,g,'rw'],
+    ['lw','o',g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,'rw'],
+    ['lw','o',g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,'rw'],
+    ['lw',g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,'rw'],
+    ['lw',g,g,g,g,g,g,g,g,g,g,g,w,g,g,g,g,w,g,'rw'],
+    ['lw',g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,'rw'],
+    ['lw',g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,'rw'],
+    ['lw',g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,w,g,'rw'],
+    ['lw',g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,w,g,'rw'],
+    ['cnw',b,b,b,g,g,g,g,g,g,g,g,g,g,g,g,g,w,g,'rw'],
+    ['lw',g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,w,g,'rw'],
+    ['lw',g,g,g,g,g,g,g,x,g,g,g,g,g,g,g,g,w,g,'rw'],
+    ['lw',g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,w,g,'rw'],
+    ['csw','bw','bw','bw','bw','bw','bw','bw','bw','bw','bw','bw','bw','bw','bw','bw','bw','bw','bw','cse']
+  ];
+
   // keypress handler
   const main = document.getElementById('container');
   document.addEventListener('keydown',(e) =>{     //change to jquery
@@ -219,20 +274,16 @@ document.addEventListener('DOMContentLoaded', ()=> {
     // direction checker
     if (Number(movePos[0]) === Number(playPos[0])){
       if (Number(movePos[1])-1 === Number(playPos[1])){
-        console.log('face right');
         player.setAttribute('class','playerright');
       }else if (Number(movePos[1])+1 === Number(playPos[1])){
-        console.log('face left');
         player.setAttribute('class','playerleft');
 
       }
     }else if (movePos[1] === playPos[1]){
       if (Number(movePos[0])+1 === Number(playPos[0])){
-        console.log('face up');
         player.setAttribute('class','playerup');
 
       }else if (Number(movePos[0])-1 === Number(playPos[0])){
-        console.log('face down');
         player.setAttribute('class','playerdown');
       }
     }
@@ -331,7 +382,7 @@ document.addEventListener('DOMContentLoaded', ()=> {
             box.setAttribute('state','deadlylava');
             break;
 
-          case 'x': box.style.backgroundPosition = '-0px -64px'; //endsquare
+          case 'x': box.style.backgroundPosition = '-128px -32px'; //endsquare
             box.setAttribute('state','ending');
             box.setAttribute('class','ending');
             break;
@@ -350,22 +401,31 @@ document.addEventListener('DOMContentLoaded', ()=> {
         gameboard();
         newGameSplash();
         createPlayer(playerStats.playerStart);
-        createStuff();
+        createStuff('1');
+        break;
+      case '2':
+    gameboard('2');
+    createPlayer(playerStats.playerStart);
+    createStuff('2');
+    break;
+
     }
 
   }
 
   gameLoader('1');
 
-  function createStuff(){
-
-    createItem('h',[10,10]);
-    createItem('g',[11,11]);
-    createItem('h',[12,12]);
-    createItem('g',[1,11]);
-    createItem('g',[11,1])
-    createItem('g',[13,12]);
-    createItem('g',[7,9]);
+  function createStuff(level){
+    switch (level){
+      case '1':
+        createItem('h',[10,10]);
+        createItem('g',[11,11]);
+        createItem('h',[12,12]);
+        createItem('g',[1,11]);
+        createItem('g',[11,1])
+        createItem('g',[13,12]);
+        createItem('g',[7,9]);
+    }
   }
 
 
@@ -408,9 +468,7 @@ document.addEventListener('DOMContentLoaded', ()=> {
     const  moveToBox = document.getElementById(boxId);
     const stater = moveToBox.getAttribute('state');
     if (xaxis > 18){
-      console.log('border');
     }else if(stater === 'true'){
-      console.log('blocked move');
     }else if(stater === 'ending'){
       levelCompleteSplash();
       move(moveLoc,playPos,boxId);
@@ -467,6 +525,8 @@ document.addEventListener('DOMContentLoaded', ()=> {
     contain.appendChild(splash);
     splash.addEventListener('click',()=>{
       console.log('next level');
+      document.getElementById('container').textContent = '';
+      gameLoader('1');
     });
 
   }
