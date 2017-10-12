@@ -216,12 +216,12 @@ document.addEventListener('DOMContentLoaded', ()=> {
     ['lw','o','csw','bw',g,'bw','cse',g,g,g,g,g,g,g,g,g,g,g,g,'rw'],
     ['lw','o',g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,'rw'],
     ['lw','o',g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,'rw'],
-    ['lw',g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,'rw'],
-    ['lw',g,g,g,g,g,g,g,g,g,g,g,w,g,g,g,g,w,g,'rw'],
-    ['lw',g,g,g,g,g,'rs','rs','rs','rs','rs','rs','rtp','rs','rs','rs','rs','rxr',g,'rw'],
-    ['lw',g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,'rw'],
-    ['lw',g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,w,g,'rw'],
-    ['lw',g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,w,g,'rw'],
+    ['lw',g,'m','m','m',g,g,g,g,g,g,g,g,g,g,g,g,g,g,'rw'],
+    ['lw',g,'m','m','m',g,g,g,g,g,g,g,w,g,g,g,g,w,g,'rw'],
+    ['lw',g,'m','m','m',g,'rs','rs','rs','rs','rs','rs','rtp','rs','rs','rs','rs','rxr',g,'rw'],
+    ['lw',g,'m','m','m',g,g,'f','f','f',g,g,g,g,g,g,g,g,g,'rw'],
+    ['lw',g,'m','m','m',g,'f','f','f','f',g,g,g,g,g,g,g,w,g,'rw'],
+    ['lw',g,'m','m','m',g,'f','f','f','f',g,g,g,g,g,g,g,w,g,'rw'],
     ['cnw',b,b,b,g,g,g,g,g,g,g,g,g,g,g,g,g,w,g,'rw'],
     ['lw',g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,w,g,'rw'],
     ['lw',g,g,g,g,g,g,g,x,g,g,g,g,g,g,g,g,w,g,'rw'],
@@ -239,12 +239,12 @@ document.addEventListener('DOMContentLoaded', ()=> {
     ['lw','o','csw','bw',g,'bw','cse',g,g,g,g,g,g,g,g,g,g,g,g,'rw'],
     ['lw','o',g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,'rw'],
     ['lw','o',g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,'rw'],
-    ['lw',g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,'rw'],
-    ['lw',g,g,g,g,g,g,g,g,g,g,g,w,g,g,g,g,w,g,'rw'],
-    ['lw',g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,'rw'],
-    ['lw',g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,'rw'],
-    ['lw',g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,w,g,'rw'],
-    ['lw',g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,w,g,'rw'],
+    ['lw','m','m','m',g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,'rw'],
+    ['lw','m','m','m',g,g,g,g,g,g,g,g,w,g,g,g,g,w,g,'rw'],
+    ['lw','m','m','m',g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,'rw'],
+    ['lw','m','m','m',g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,'rw'],
+    ['lw','m','m','m',g,g,g,g,g,g,g,g,g,g,g,g,g,w,g,'rw'],
+    ['lw','m','m','m',g,g,g,g,g,g,g,g,g,g,g,g,g,w,g,'rw'],
     ['cnw',b,b,b,g,g,g,g,g,g,g,g,g,g,g,g,g,w,g,'rw'],
     ['lw',g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,w,g,'rw'],
     ['lw',g,g,g,g,g,g,g,x,g,g,g,g,g,g,g,g,w,g,'rw'],
@@ -367,7 +367,7 @@ document.addEventListener('DOMContentLoaded', ()=> {
             box.setAttribute('state','false');
             break;
 
-          case 'f': box.style.backgroundPosition = '-64px -32px'; //toggled hotsquare
+          case 'f': box.style.backgroundPosition = '-64px -32px'; //hotswitch
             box.setAttribute('state','deadlylava');
             box.setAttribute('class','toghot');
             break;
@@ -376,7 +376,7 @@ document.addEventListener('DOMContentLoaded', ()=> {
             box.setAttribute('state','deadlylava');
             break;
 
-          case 'v': box.style.backgroundPosition = '-32px -32px'; //toggled hotsquare
+          case 'v': box.style.backgroundPosition = '-32px -32px'; //horizontal platform
             box.setAttribute('state','deadlylava');
             break;
 
@@ -389,8 +389,12 @@ document.addEventListener('DOMContentLoaded', ()=> {
             break;
 
           case 'x': box.style.backgroundPosition = '-128px -32px'; //endsquare
-            box.setAttribute('state','deadlylava');
+            box.setAttribute('state','ending');
             box.setAttribute('class','ending');
+            break;
+
+          case 'm': box.style.backgroundPosition = '-64px -32px'; //red 4way
+            box.setAttribute('state','deadlylava');
             break;
         }
         box.style.float ='left';
@@ -512,6 +516,8 @@ document.addEventListener('DOMContentLoaded', ()=> {
   }
   function blueGemCollect(){
     currencyCount(666);
+    const audiogem = new Audio('sounds/gembeep.wav');
+    audiogem.play();
   }
 
 
@@ -578,6 +584,8 @@ document.addEventListener('DOMContentLoaded', ()=> {
   }
 
   function death(){
+    const audiodeath = new Audio('sounds/deadbug.wav');
+    audiodeath.play();
     resetLevel();
     lifeCount('false');
   }
