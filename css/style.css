@@ -201,7 +201,7 @@ width: 32px;
     background-image: url("images/truetiles.png");
 
 
-            animation: playerleft 0.8s steps(4) infinite;
+            animation: playerright 0.8s steps(4) infinite;
 }
 
 

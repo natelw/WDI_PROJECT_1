@@ -21,6 +21,23 @@ document.addEventListener('DOMContentLoaded', ()=> {
     playerStats.turnCounter++;
     const stepBoard = document.getElementById('stepcount');
     stepBoard.innerHTML = playerStats.turnCounter;
+    lavatog();
+  }
+
+  function lavatog(){
+    if (playerStats.turnCounter % 3 === 0){
+      const toghot = document.getElementsByClassName('toghot');
+      console.log(toghot);
+      console.log(toghot.length);
+      for (var i = 0; i < toghot.length; i++) {
+        if (toghot[i].getAttribute('state') === 'deadlylava'){
+          toghot[i].setAttribute('state','false');
+          console.log(toghot);
+        }else{
+          toghot[i].setAttribute('state','deadlylava');
+        }
+      }
+    }
   }
   //counter of lives
   function lifeCount(gainOrLoss){
@@ -148,7 +165,7 @@ document.addEventListener('DOMContentLoaded', ()=> {
     [b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b],
     [b,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,b],
     [b,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,b],
-    [b,g,b,b,b,b,b,g,g,g,g,g,g,g,g,g,g,g,g,b],
+    [b,g,b,b,b,b,b,g,g,g,g,'f',g,g,'f',g,g,g,g,b],
     [b,g,b,g,g,g,b,g,g,g,g,g,g,g,g,g,g,g,g,b],
     [b,g,b,g,g,g,b,g,g,g,g,g,g,g,g,g,g,g,g,b],
     [b,g,b,b,g,b,b,g,g,g,g,g,g,g,g,g,g,g,g,b],
@@ -196,7 +213,7 @@ document.addEventListener('DOMContentLoaded', ()=> {
     if (Number(movePos[0]) === Number(playPos[0])){
       if (Number(movePos[1])-1 === Number(playPos[1])){
         console.log('face right');
-        player.setAttribute('class','player');
+        player.setAttribute('class','playerright');
       }else if (Number(movePos[1])+1 === Number(playPos[1])){
         console.log('face left');
         player.setAttribute('class','playerleft');
@@ -252,6 +269,12 @@ document.addEventListener('DOMContentLoaded', ()=> {
           case 'w': box.style.backgroundPosition = '-32px -64px'; //animated end of red exit down
             box.setAttribute('state','deadlylava');
             box.setAttribute('class','endsec');
+            break;
+
+          case 'f': box.style.backgroundPosition = '-64px -32px'; //animated end of red exit down
+            box.setAttribute('state','deadlylava');
+            box.setAttribute('class','toghot');
+            break;
         }
         box.style.float ='left';
         main.appendChild(box);
