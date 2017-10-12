@@ -27,54 +27,60 @@ document.addEventListener('DOMContentLoaded', ()=> {
   }
 
   function lavatog(){
-    hotCounter++;
+    ++hotCounter;
     console.log(hotCounter);
-    if (hotCounter > 5){
-      hotCounter = 1;
-      const toghot = document.getElementsByClassName('toghot');
-    }
+
     switch (hotCounter){
 
       case 1:
         for (let i = 0; i < toghot.length; i++) {
           toghot[i].style.backgroundPosition = '-288px 0px';
-          console.log('toghot');
+          toghot[i].setAttribute('state','deadlylava');
+          console.log('deadly');
         }
         break;
       case 2:for (let i = 0; i < toghot.length; i++) {
         toghot[i].style.backgroundPosition = '-256px 0px';
+        toghot[i].setAttribute('state','deadlylava');
+        console.log('deadly');
+
       }
         break;
       case 3:for (let i = 0; i < toghot.length; i++) {
         toghot[i].style.backgroundPosition = '-224px 0px';
+        toghot[i].setAttribute('state','deadlylava');
+        console.log('deadly');
+
       }
         break;
       case 4:for (let i = 0; i < toghot.length; i++) {
         toghot[i].style.backgroundPosition = '-224px -32px';
+        toghot[i].setAttribute('state','false');
+        console.log('safe');
+
       }
         break;
       case 5:for (let i = 0; i < toghot.length; i++) {
         toghot[i].style.backgroundPosition = '-256px -32px';
+        toghot[i].setAttribute('state','false');
+        console.log('safe');
+
       }
         break;
       case 6:for (var i = 0; i < toghot.length; i++) {
         toghot[i].style.backgroundPosition = '-288px -32px';
+        toghot[i].setAttribute('state','false');
+        console.log('safe');
+
       }
         break;
+
+    }
+    if (hotCounter > 5){
+      hotCounter = 0;
     }
 
-    if (hotCounter === 4){
-      const toghot = document.getElementsByClassName('toghot');
-      for (let i = 0; i < toghot.length; i++) {
-        if (toghot[i].getAttribute('state') === 'deadlylava'){
-          toghot[i].setAttribute('state','false');
-          //toghot[i].style.backgroundPosition = '-64px -32px';
-        }else{
-          toghot[i].setAttribute('state','deadlylava');
-        //  toghot[i].style.backgroundPosition = '-64px -64px';
-        }
-      }
-    }
+
   }
   //counter of lives
   function lifeCount(gainOrLoss){
@@ -383,7 +389,7 @@ document.addEventListener('DOMContentLoaded', ()=> {
             break;
 
           case 'x': box.style.backgroundPosition = '-128px -32px'; //endsquare
-            box.setAttribute('state','ending');
+            box.setAttribute('state','deadlylava');
             box.setAttribute('class','ending');
             break;
         }
