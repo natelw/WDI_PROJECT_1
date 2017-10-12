@@ -1,4 +1,3 @@
-
 document.addEventListener('DOMContentLoaded', ()=> {
   console.log('up and running');
 
@@ -13,7 +12,7 @@ document.addEventListener('DOMContentLoaded', ()=> {
   playerStats.playerYellowKey = 'false';
   playerStats.playerRedKey = 'false';
   playerStats.turnCounter = 0;
-  playerStats.playerStart = [2,2];
+  playerStats.playerStart = [10,15];
   console.log(playerStats);
 
   //counter of steps
@@ -21,6 +20,7 @@ document.addEventListener('DOMContentLoaded', ()=> {
     playerStats.turnCounter++;
     const stepBoard = document.getElementById('stepcount');
     stepBoard.innerHTML = playerStats.turnCounter;
+    hotToggle(playerStats.turnCounter);
   }
   //counter of lives
   function lifeCount(gainOrLoss){
@@ -41,6 +41,7 @@ document.addEventListener('DOMContentLoaded', ()=> {
 
   }
   lifeCount('false');
+
   // counter of coin
   function currencyCount(amount){
     playerStats.currency = playerStats.currency + amount;
@@ -50,17 +51,46 @@ document.addEventListener('DOMContentLoaded', ()=> {
     currencyCounter.innerHTML = playerStats.currency;
   }
 
-// level reset
+  // togglable deadly lava
+  function hotToggle(turnNumber){
+    const lavatriggroup = document.getElementsByClassName('togglehot');
+    console.log(lavatriggroup.getAttribute('hotness'));
+    if (turnNumber % 3 === 0){
+      if (lavatriggroup.getAttribute('hotness') === 'true') {
+
+        const lavatiles = document.getElementsByClassName('togglehot');
+        for (var i = 0; i < lavatiles.length; i++) {
+          lavatiles[i].getAttribute('hotness','false');
+        }
+        console.log('huh');
+      } else {
+        const lavatiles = document.getElementsByClassName('togglehot');
+        for (var i = 0; i < lavatiles.length; i++) {
+        lavatiles[i].getAttribute('hotness','false');
+
+        }
+      }
+    }
+  }
+
+
+  // level reset
   function resetLevel(){
+    console.log('reset?');
+    document.getElementById('player').outerHTML='';
+    console.log('deleted bug?');
+    console.log('new bugg?');
+    createPlayer(playerStats.playerStart);
     playerStats.currencyTotal = playerStats.currencyTotal - playerStats.currency;
     playerStats.currency = 0;
     playerStats.turnCounter = 0;
+
     const stepBoard = document.getElementById('stepcount');
     stepBoard.innerHTML = playerStats.turnCounter;
     const currencyCounter = document.getElementById('currencycounter');
     currencyCounter.innerHTML = playerStats.currency;
     document.getElementById('player').outerHTML='';
-    createPlayer(playerStats.playerStart);
+
     console.log(playerStats);
   }
   // game reset
@@ -78,9 +108,7 @@ document.addEventListener('DOMContentLoaded', ()=> {
     const playerBox = document.createElement('div');
     playerBox.style.width = '32px';
     playerBox.style.height= '32px';
-    //playerBox.style.margin = '0px 8px';
     playerBox.style.backgroundImage = 'url(images/truetiles.png)';
-    //playerBox.style.backgroundPosition = '-19px -19px'; //face front basic
     playerBox.setAttribute('id','player');
     playerBox.setAttribute('class','player');
     playerBox.setAttribute('state','player');
@@ -88,11 +116,13 @@ document.addEventListener('DOMContentLoaded', ()=> {
     playerBox.setAttribute('ypos',location[1]);
     playerBox.setAttribute('lastxpos',location[0]);
     playerBox.setAttribute('lastypos',location[1]);
+    console.log(playerBox);
     playerBox.style.position ='relative';
     playerBox.style.top ='0px';
     playerBox.style.left ='0px';
     playerBox.style.zIndex ='2';
     const box = document.getElementById('box_'+location[0]+'_'+location[1]);
+    console.log(location[1]);
     box.appendChild(playerBox);
     //item entity creator
   }
@@ -131,6 +161,18 @@ document.addEventListener('DOMContentLoaded', ()=> {
         itemBox.style.left = '0px';
         itemBox.setAttribute('class','bluegem');
         itemBox.setAttribute('itemType','bluegem');
+        break;
+      }
+      case 't':{
+        itemBox.style.backgroundImage = 'url(images/itemsprite.png)';
+
+        itemBox.setAttribute('id','togglehot_'+location[0]+'_'+location[1]);
+        itemBox.style.position = 'relative';
+        itemBox.style.top ='0px';
+        itemBox.style.left = '0px';
+        itemBox.setAttribute('class','togglehot');
+        itemBox.setAttribute('itemType','togglehot');
+        itemBox.setAttribute('hotness','true');
         break;
       }
     }
@@ -192,6 +234,7 @@ document.addEventListener('DOMContentLoaded', ()=> {
     player.setAttribute('ypos',movePos[1]);
     player.setAttribute('lastxpos',playPos[0]);
     player.setAttribute('lastypos',playPos[1]);
+
     // direction checker
     if (Number(movePos[0]) === Number(playPos[0])){
       if (Number(movePos[1])-1 === Number(playPos[1])){
@@ -210,9 +253,22 @@ document.addEventListener('DOMContentLoaded', ()=> {
     box.appendChild(player);
     stepCount();
   }
-  // key up skey listener
+  // key up key listener
+  document.addEventListener('keyup',(e) => {
+    switch(e.keyCode){
+      case 37: pressedLeft = false;
+        break;
+      case 38: pressedUp = false;
+        break;
+      case 39: pressedRight = false;
+        break;
+      case 40: pressedDown = false;
+        break;
+      case 32: pressedSpace = false;
+        break;
+    }
 
-
+  });
   // board creator function
   function gameboard(){
 
@@ -254,25 +310,13 @@ document.addEventListener('DOMContentLoaded', ()=> {
 
     }
   }
-  function gameLoader(level){
 
-    switch (level){
-      case '1':
-        gameboard();
-        createPlayer(playerStats.playerStart);
-        createItem('h',[10,10]);
-        createItem('g',[11,11]);
-        createItem('h',[12,12]);
-        createItem('g',[1,11]);
-        createItem('g',[11,1]);
-        createItem('g',[13,12]);
-        createItem('g',[7,9]);
+  gameboard();
+  createPlayer(playerStats.playerStart);
+  createItem('h',[10,10]);
+  createItem('g',[11,11]);
 
-    }
 
-  }
-
-  gameLoader('1');
 
   //find position of player
   function getPosition(){
@@ -283,7 +327,7 @@ document.addEventListener('DOMContentLoaded', ()=> {
 
   }
 
-  //basic keyboard controls
+  //keyboard controls
   function movePress(direction){
     const playPos = getPosition();
     let xaxis = playPos[0];
@@ -310,12 +354,14 @@ document.addEventListener('DOMContentLoaded', ()=> {
     const moveLoc = [String(xaxis),String(yaxis)];
     const  moveToBox = document.getElementById(boxId);
     const stater = moveToBox.getAttribute('state');
+    console.log(stater);
     if (xaxis > 18){
       console.log('border');
     }else if(stater === 'true'){
       console.log('blocked move');
     }else if(stater === 'deadlylava'){
       const boxId= 'box_' + xaxis + '_' + yaxis;
+      death();
       const moveLoc = [String(xaxis),String(yaxis)];
       move(moveLoc,playPos,boxId);
       death();
@@ -382,8 +428,7 @@ document.addEventListener('DOMContentLoaded', ()=> {
     splash.style.backgroundColor ='red';
     const contain = document.getElementById('container');
     contain.appendChild(splash);
-    
-
+    goButton();
   }
   function levelSplash(){
     const splash = document.createElement('div');
@@ -406,15 +451,12 @@ document.addEventListener('DOMContentLoaded', ()=> {
 
   function goButton(){
     const gobutt =  document.createElement('div');
+    const levelsplash = document.getElementById('levelsplash');
     gobutt.style.width = '300px';
     gobutt.style.height = '300px';
     gobutt.style.margin = '90px';
     gobutt.style.border = '2px solid black';
-    gobutt.style.zIndex = '6';
-    gobutt.style.position = 'absolute';
-    gobutt.style.top = '50px';
-    const contain = document.getElementById('container');
-    contain.appendChild(gobutt);
+    levelsplash.appendChild(gobutt);
 
   }
 

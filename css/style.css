@@ -40,6 +40,19 @@ font-family: 'Bungee', cursive;
 font-family: 'Bungee Hairline', cursive;
 
 */
+.splash {
+  position: 'relative';
+  width: '458px';
+  height: '458px';
+  margin: '90px';
+  border: '2px solid black';
+  z-Index: '5';
+  background-color: 'grey';
+}
+
+
+
+
 .title {
   font-family: 'Bungee', cursive;
   position: relative;
@@ -133,6 +146,66 @@ width: 32px;
 
 
 @keyframes player {
+   from { background-position:    0px -192px; }
+     to { background-position: -128px -192px; }
+}
+
+.playerup {
+width: 32px;
+    height: 32px;
+    background-image: url("images/truetiles.png");
+
+
+            animation: playerup 0.8s steps(4) infinite;
+}
+
+
+@keyframes playerup {
+   from { background-position:    0px -224px; }
+     to { background-position: -128px -224px; }
+}
+
+.playerdown {
+width: 32px;
+    height: 32px;
+    background-image: url("images/truetiles.png");
+
+
+            animation: playerdown 0.8s steps(4) infinite;
+}
+
+
+@keyframes playerdown {
+   from { background-position:    0px -286px; }
+     to { background-position: -128px -286px; }
+}
+
+.playerleft {
+width: 32px;
+    height: 32px;
+    background-image: url("images/truetiles.png");
+
+
+            animation: playerleft 0.8s steps(4) infinite;
+}
+
+
+@keyframes playerleft {
+   from { background-position:    0px -192px; }
+     to { background-position: -128px -192px; }
+}
+
+.playerright {
+width: 32px;
+    height: 32px;
+    background-image: url("images/truetiles.png");
+
+
+            animation: playerleft 0.8s steps(4) infinite;
+}
+
+
+@keyframes playerright {
    from { background-position:    0px -192px; }
      to { background-position: -128px -192px; }
 }

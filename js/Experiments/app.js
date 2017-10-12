@@ -210,9 +210,22 @@ document.addEventListener('DOMContentLoaded', ()=> {
     box.appendChild(player);
     stepCount();
   }
-  // key up skey listener
+  // key up key listener
+  document.addEventListener('keyup',(e) => {
+    switch(e.keyCode){
+      case 37: pressedLeft = false;
+        break;
+      case 38: pressedUp = false;
+        break;
+      case 39: pressedRight = false;
+        break;
+      case 40: pressedDown = false;
+        break;
+      case 32: pressedSpace = false;
+        break;
+    }
 
-
+  });
   // board creator function
   function gameboard(){
 
@@ -254,25 +267,13 @@ document.addEventListener('DOMContentLoaded', ()=> {
 
     }
   }
-  function gameLoader(level){
 
-    switch (level){
-      case '1':
-        gameboard();
-        createPlayer(playerStats.playerStart);
-        createItem('h',[10,10]);
-        createItem('g',[11,11]);
-        createItem('h',[12,12]);
-        createItem('g',[1,11]);
-        createItem('g',[11,1]);
-        createItem('g',[13,12]);
-        createItem('g',[7,9]);
+  gameboard();
+  createPlayer(playerStats.playerStart);
+  createItem('h',[10,10]);
+  createItem('g',[11,11]);
 
-    }
 
-  }
-
-  gameLoader('1');
 
   //find position of player
   function getPosition(){
@@ -382,8 +383,7 @@ document.addEventListener('DOMContentLoaded', ()=> {
     splash.style.backgroundColor ='red';
     const contain = document.getElementById('container');
     contain.appendChild(splash);
-    
-
+    goButton();
   }
   function levelSplash(){
     const splash = document.createElement('div');
@@ -406,15 +406,12 @@ document.addEventListener('DOMContentLoaded', ()=> {
 
   function goButton(){
     const gobutt =  document.createElement('div');
+    const levelsplash = document.getElementById('levelsplash');
     gobutt.style.width = '300px';
     gobutt.style.height = '300px';
     gobutt.style.margin = '90px';
     gobutt.style.border = '2px solid black';
-    gobutt.style.zIndex = '6';
-    gobutt.style.position = 'absolute';
-    gobutt.style.top = '50px';
-    const contain = document.getElementById('container');
-    contain.appendChild(gobutt);
+    levelsplash.appendChild(gobutt);
 
   }
 
