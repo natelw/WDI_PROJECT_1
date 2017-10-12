@@ -167,17 +167,17 @@ document.addEventListener('DOMContentLoaded', ()=> {
 
   const map = [ // level map
     ['cnw',b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,'cne'],
+    ['lw','o','o','o','o','o','o','o','o',g,g,g,g,g,g,g,g,g,g,'rw'],
+    ['lw','o','o','o','o','o','o','o','o',g,g,g,g,g,g,g,g,g,g,'rw'],
+    ['lw','o','cnw',b,b,b,'cne',g,g,g,g,f,g,g,f,g,g,g,g,'rw'],
+    ['lw','o','lw',g,g,g,'rw',g,g,g,g,g,g,g,g,g,g,g,g,'rw'],
+    ['lw','o','lw',g,g,g,'rw',g,g,g,g,g,g,g,g,g,g,g,g,'rw'],
+    ['lw','o','csw','bw',g,'bw','cse',g,g,g,g,g,g,g,g,g,g,g,g,'rw'],
+    ['lw','o',g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,'rw'],
+    ['lw','o',g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,'rw'],
     ['lw',g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,'rw'],
-    ['lw',g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,'rw'],
-    ['lw',g,'cnw',b,b,b,'cne',g,g,g,g,f,g,g,f,g,g,g,g,'rw'],
-    ['lw',g,'lw',g,g,g,'rw',g,g,g,g,g,g,g,g,g,g,g,g,'rw'],
-    ['lw',g,'lw',g,g,g,'rw',g,g,g,g,g,g,g,g,g,g,g,g,'rw'],
-    ['lw',g,'csw','bw',g,'bw','cse',g,g,g,g,g,g,g,g,g,g,g,g,'rw'],
-    ['lw',g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,'rw'],
-    ['lw',g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,'rw'],
-    ['lw',g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,'rw'],
-    ['lw',g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,'rw'],
-    ['lw',g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,'rw'],
+    ['lw',g,g,g,g,g,g,g,g,g,g,g,w,g,g,g,g,w,g,'rw'],
+    ['lw',g,g,g,g,g,'rs','rs','rs','rs','rs','rs','rtp','rs','rs','rs','rs','rxr',g,'rw'],
     ['lw',g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,'rw'],
     ['lw',g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,w,g,'rw'],
     ['lw',g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,w,g,'rw'],
@@ -291,21 +291,37 @@ document.addEventListener('DOMContentLoaded', ()=> {
             box.setAttribute('state','true');
             break;
 
-          case 'rw': box.style.backgroundPosition = '-32px -128px'; // blue corner SW
+          case 'rw': box.style.backgroundPosition = '-32px -128px'; // blue right wall
             box.setAttribute('state','true');
             break;
 
-          case 'lw': box.style.backgroundPosition = '-64px -128px'; // blue corner SW
+          case 'lw': box.style.backgroundPosition = '-64px -128px'; // blue left wall
             box.setAttribute('state','true');
             break;
 
-          case 'bw': box.style.backgroundPosition = '-96px -128px'; // blue corner SW
+          case 'bw': box.style.backgroundPosition = '-96px -128px'; // blue bottom wall
             box.setAttribute('state','true');
+            break;
+
+          case 'o': box.style.backgroundPosition = '-0px -32px'; // grey grid floor
+            box.setAttribute('state','false');
             break;
 
           case 'f': box.style.backgroundPosition = '-64px -32px'; //toggled hotsquare
             box.setAttribute('state','deadlylava');
             box.setAttribute('class','toghot');
+            break;
+
+          case 'rs': box.style.backgroundPosition = '-64px -64px'; //toggled hotsquare
+            box.setAttribute('state','deadlylava');
+            break;
+
+          case 'rtp': box.style.backgroundPosition = '-128px -64px'; //red top 3way
+            box.setAttribute('state','deadlylava');
+            break;
+
+          case 'rxr': box.style.backgroundPosition = '-32px -64px'; //red 4way
+            box.setAttribute('state','deadlylava');
             break;
 
           case 'x': box.style.backgroundPosition = '-0px -64px'; //endsquare
