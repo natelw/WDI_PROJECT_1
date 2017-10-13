@@ -108,7 +108,7 @@ document.addEventListener('DOMContentLoaded', ()=> {
     currencyCounter.innerHTML = playerStats.currency;
   }
 
-// level reset
+  // level reset
   function resetLevel(){
     playerStats.currencyTotal = playerStats.currencyTotal - playerStats.currency;
     playerStats.currency = 0;
@@ -217,15 +217,15 @@ document.addEventListener('DOMContentLoaded', ()=> {
     ['lw','f','csw','bw',g,'bw','cse','m','m','m','m',g,g,g,g,f,g,g,w,'rw'],
     ['lw','o',o,o,o,o,o,f,f,g,f,o,o,o,o,f,g,g,q,'rw'],
     ['lw','o',o,o,o,o,o,f,f,g,o,g,f,g,o,f,g,g,q,'rw'],
-    ['lw',g,'m','m','m',o,g,f,f,g,g,f,f,f,g,f,f,g,g,'rw'],
-    ['lw',g,'m','m','m',o,g,f,f,g,g,g,w,g,g,g,g,w,g,'rw'],
-    ['lw',g,'m','m','m',o,'rs','rs','rs','rs','rs',f,'rtp','rs','rs','rs','rs','rxr',g,'rw'],
+    ['lw',g,'m','m','m',o,g,f,f,g,g,f,f,f,g,f,f,g,q,'rw'],
+    ['lw',g,'m','m','m',o,g,f,f,g,g,g,w,g,g,g,g,w,q,'rw'],
+    ['lw',g,'m','m','m',o,'rs','rs','rs','rs','rs',f,'rtp','rs','rs','rs','rs','rxr','rxr','rw'],
     ['lw',g,'m','m','m',o,g,'f','f','f',g,o,o,o,o,o,o,o,o,'rw'],
     ['lw',g,'m','m','m',o,'f','f','f','f',o,o,g,o,g,o,g,f,o,'rw'],
     ['lw',g,'m','m','m',o,'f','f','f','f',o,o,o,o,o,o,o,q,o,'rw'],
     ['cnw',b,b,b,b,b,b,b,b,b,b,b,f,f,f,o,o,q,o,'rw'],
     ['lw',o,o,o,o,o,g,f,f,g,f,g,f,g,f,g,g,q,o,'rw'],
-    ['lw',o,o,g,o,g,g,g,x,f,f,g,g,g,f,g,g,q,g,'rw'],
+    ['lw',o,o,g,o,x,g,g,o,f,f,g,g,g,f,g,g,q,g,'rw'],
     ['lw',o,o,o,o,o,o,g,g,f,f,f,f,g,f,g,g,q,g,'rw'],
     ['csw','bw','bw','bw','bw','bw','bw','bw','bw','bw','bw','bw','bw','bw','bw','bw','bw','bw','bw','cse']
   ];
@@ -265,8 +265,7 @@ document.addEventListener('DOMContentLoaded', ()=> {
         break;
       case 40: movePress('down');
         break;
-      case 32: pressedSpace = true;
-        break;
+
     }
   }, false);
   // move player around
@@ -435,9 +434,9 @@ document.addEventListener('DOMContentLoaded', ()=> {
       case '1':
         createItem('h',[10,10]);
         createItem('g',[11,11]);
-        createItem('h',[12,12]);
+        createItem('h',[17,3]);
         createItem('g',[1,11]);
-        createItem('g',[11,1])
+        createItem('g',[11,1]);
         createItem('g',[13,12]);
         createItem('g',[7,9]);
     }
@@ -487,7 +486,6 @@ document.addEventListener('DOMContentLoaded', ()=> {
     }else if(stater === 'ending'){
       levelCompleteSplash();
       move(moveLoc,playPos,boxId);
-//          resetLevel();
     }else if(stater === 'deadlylava'){
       const boxId= 'box_' + xaxis + '_' + yaxis;
       const moveLoc = [String(xaxis),String(yaxis)];
