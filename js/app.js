@@ -414,10 +414,10 @@ document.addEventListener('DOMContentLoaded', ()=> {
         createStuff('1');
         break;
       case '2':
-    gameboard('2');
-    createPlayer(playerStats.playerStart);
-    createStuff('2');
-    break;
+        gameboard('2');
+        createPlayer(playerStats.playerStart);
+        createStuff('2');
+        break;
 
     }
 
@@ -518,7 +518,7 @@ document.addEventListener('DOMContentLoaded', ()=> {
     lifeCount('true');
   }
   function blueGemCollect(){
-    currencyCount(666);
+    currencyCount(1);
     const audiogem = new Audio('sounds/gembeep.wav');
     audiogem.play();
   }
@@ -528,7 +528,7 @@ document.addEventListener('DOMContentLoaded', ()=> {
   function levelCompleteSplash(){
 
     const audiocomplete = new Audio('sounds/gamewin.mp3');
-    audiocomplete.play();
+      audiocomplete.play();
     const splash = document.createElement('div');
     splash.getAttribute('class','splashy');
     splash.getAttribute('id','levelcompletesplash');
@@ -537,6 +537,8 @@ document.addEventListener('DOMContentLoaded', ()=> {
     splash.style.height = '458px';
     splash.style.margin = '90px';
     splash.style.border = '2px solid black';
+    splash.style.backgroundImage = 'url(images/winner.png)';
+
     splash.style.zIndex = '5';
     splash.style.backgroundColor ='white';
     const contain = document.getElementById('container');
@@ -563,6 +565,8 @@ document.addEventListener('DOMContentLoaded', ()=> {
     splash.style.border = '2px solid black';
     splash.style.zIndex = '5';
     splash.style.backgroundColor ='red';
+    splash.style.backgroundImage = 'url(images/gameover.png)';
+
     const contain = document.getElementById('container');
     contain.appendChild(splash);
     splash.addEventListener('click',()=>{
@@ -581,6 +585,7 @@ document.addEventListener('DOMContentLoaded', ()=> {
     splash.style.width = '458px';
     splash.style.height = '458px';
     splash.style.margin = '90px';
+    splash.style.backgroundImage = 'url(images/instruct.png)';
     splash.style.border = '2px solid black';
     splash.style.zIndex = '5';
     splash.style.backgroundColor ='pink';
