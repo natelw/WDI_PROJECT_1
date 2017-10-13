@@ -205,35 +205,36 @@ document.addEventListener('DOMContentLoaded', ()=> {
   const w = 'w';
   const x = 'x';
   const f = 'f';
-
+  const q = 'q';
+  const o = 'o';
   const map = [ // level map
     ['cnw',b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,'cne'],
-    ['lw','o','o','o','o','o','o','o','o',g,g,g,g,g,g,g,g,g,g,'rw'],
-    ['lw','o','o','o','o','o','o','o','o',g,g,g,g,g,g,g,g,g,g,'rw'],
-    ['lw','o','cnw',b,b,b,'cne',g,g,g,g,f,g,g,f,g,g,g,g,'rw'],
-    ['lw','o','lw',g,g,g,'rw',g,g,g,g,g,g,g,g,g,g,g,g,'rw'],
-    ['lw','o','lw',g,g,g,'rw',g,g,g,g,g,g,g,g,g,g,g,g,'rw'],
-    ['lw','o','csw','bw',g,'bw','cse',g,g,g,g,g,g,g,g,g,g,g,g,'rw'],
-    ['lw','o',g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,'rw'],
-    ['lw','o',g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,'rw'],
-    ['lw',g,'m','m','m',g,g,g,g,g,g,g,g,g,g,g,g,g,g,'rw'],
-    ['lw',g,'m','m','m',g,g,g,g,g,g,g,w,g,g,g,g,w,g,'rw'],
-    ['lw',g,'m','m','m',g,'rs','rs','rs','rs','rs','rs','rtp','rs','rs','rs','rs','rxr',g,'rw'],
-    ['lw',g,'m','m','m',g,g,'f','f','f',g,g,g,g,g,g,g,g,g,'rw'],
-    ['lw',g,'m','m','m',g,'f','f','f','f',g,g,g,g,g,g,g,w,g,'rw'],
-    ['lw',g,'m','m','m',g,'f','f','f','f',g,g,g,g,g,g,g,w,g,'rw'],
-    ['cnw',b,b,b,g,g,g,g,g,g,g,g,g,g,g,g,g,w,g,'rw'],
-    ['lw',g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,w,g,'rw'],
-    ['lw',g,g,g,g,g,g,g,x,g,g,g,g,g,g,g,g,w,g,'rw'],
-    ['lw',g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,w,g,'rw'],
+    ['lw','o','o','o','o','o','o','o','o',f,f,g,f,f,f,o,o,o,o,'rw'],
+    ['lw','o','o','o','o','o','o','o','o',f,f,g,f,f,f,'cnw',b,'cne',o,'rw'],
+    ['lw','f','cnw',b,b,b,'cne','m','m','m','m',f,f,f,f,'lw',g,'rw',o,'rw'],
+    ['lw','f','lw',g,g,g,'rw','m','m','m','m',b,b,b,b,b,b,'rw',o,'rw'],
+    ['lw','f','lw',g,g,g,'rw','m','m','m','m',g,g,g,g,f,g,g,o,'rw'],
+    ['lw','f','csw','bw',g,'bw','cse','m','m','m','m',g,g,g,g,f,g,g,w,'rw'],
+    ['lw','o',o,o,o,o,o,f,f,g,f,o,o,o,o,f,g,g,q,'rw'],
+    ['lw','o',o,o,o,o,o,f,f,g,o,g,f,g,o,f,g,g,q,'rw'],
+    ['lw',g,'m','m','m',o,g,f,f,g,g,f,f,f,g,f,f,g,g,'rw'],
+    ['lw',g,'m','m','m',o,g,f,f,g,g,g,w,g,g,g,g,w,g,'rw'],
+    ['lw',g,'m','m','m',o,'rs','rs','rs','rs','rs',f,'rtp','rs','rs','rs','rs','rxr',g,'rw'],
+    ['lw',g,'m','m','m',o,g,'f','f','f',g,o,o,o,o,o,o,o,o,'rw'],
+    ['lw',g,'m','m','m',o,'f','f','f','f',o,o,g,o,g,o,g,f,o,'rw'],
+    ['lw',g,'m','m','m',o,'f','f','f','f',o,o,o,o,o,o,o,q,o,'rw'],
+    ['cnw',b,b,b,b,b,b,b,b,b,b,b,f,f,f,o,o,q,g,'rw'],
+    ['lw',o,o,o,o,o,g,f,f,g,f,g,f,g,f,g,g,q,g,'rw'],
+    ['lw',o,o,g,o,g,g,g,x,f,f,g,g,g,f,g,g,q,g,'rw'],
+    ['lw',o,o,o,o,o,o,g,g,f,f,f,f,g,f,g,g,q,g,'rw'],
     ['csw','bw','bw','bw','bw','bw','bw','bw','bw','bw','bw','bw','bw','bw','bw','bw','bw','bw','bw','cse']
   ];
 
   const level2 = [ // level map
     ['cnw',b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,'cne'],
-    ['lw','o','o','o','o','o','o','o','o',g,g,g,g,g,g,g,g,g,g,'rw'],
-    ['lw','o','o','o','o','o','o','o','o',g,g,g,g,g,g,g,g,g,g,'rw'],
-    ['lw','o','cnw',b,b,b,'cne',g,g,g,g,f,g,g,f,g,g,g,g,'rw'],
+    ['lw','o','o','o','o','o','o','o','o',f,f,g,g,g,g,g,g,g,g,'rw'],
+    ['lw','o','o','o','o','o','o','o','o',f,f,g,g,g,g,g,g,g,g,'rw'],
+    ['lw','o','cnw',b,b,b,'cne','m','m','m','m',f,g,g,f,g,g,g,g,'rw'],
     ['lw','o','lw',g,g,g,'rw',g,g,g,g,g,g,g,g,g,g,g,g,'rw'],
     ['lw','o','lw',g,g,g,'rw',g,g,g,g,g,g,g,g,g,g,g,g,'rw'],
     ['lw','o','csw','bw',g,'bw','cse',g,g,g,g,g,g,g,g,g,g,g,g,'rw'],
@@ -394,6 +395,10 @@ document.addEventListener('DOMContentLoaded', ()=> {
             break;
 
           case 'm': box.style.backgroundPosition = '-64px -32px'; //red 4way
+            box.setAttribute('state','deadlylava');
+            break;
+
+          case 'q': box.style.backgroundPosition = '0px -64px'; //red vertical
             box.setAttribute('state','deadlylava');
             break;
         }
