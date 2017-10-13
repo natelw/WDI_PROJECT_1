@@ -223,8 +223,8 @@ document.addEventListener('DOMContentLoaded', ()=> {
     ['lw',g,'m','m','m',o,g,'f','f','f',g,o,o,o,o,o,o,o,o,'rw'],
     ['lw',g,'m','m','m',o,'f','f','f','f',o,o,g,o,g,o,g,f,o,'rw'],
     ['lw',g,'m','m','m',o,'f','f','f','f',o,o,o,o,o,o,o,q,o,'rw'],
-    ['cnw',b,b,b,b,b,b,b,b,b,b,b,f,f,f,o,o,q,g,'rw'],
-    ['lw',o,o,o,o,o,g,f,f,g,f,g,f,g,f,g,g,q,g,'rw'],
+    ['cnw',b,b,b,b,b,b,b,b,b,b,b,f,f,f,o,o,q,o,'rw'],
+    ['lw',o,o,o,o,o,g,f,f,g,f,g,f,g,f,g,g,q,o,'rw'],
     ['lw',o,o,g,o,g,g,g,x,f,f,g,g,g,f,g,g,q,g,'rw'],
     ['lw',o,o,o,o,o,o,g,g,f,f,f,f,g,f,g,g,q,g,'rw'],
     ['csw','bw','bw','bw','bw','bw','bw','bw','bw','bw','bw','bw','bw','bw','bw','bw','bw','bw','bw','cse']
